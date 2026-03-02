@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   DESIGN TOKENS — POIZON PC Seller Design System
+   ============================================================ */
+:root {
+  /* 品牌色 — Primary Teal (P scale) */
+  --color-primary-50:  #f4fffc;   /* P10  — 浅背景 */
+  --color-primary-100: #cafcfc;   /* P20  — 浅背景2 */
+  --color-primary-200: #96fafa;   /* P40  — 轻点亮 */
+  --color-primary-300: #63f7f7;   /* P60  — 颜色 Floor */
+  --color-primary-400: #00f2f2;   /* P80  — 基础/变情 */
+  --color-primary-500: #00dbdb;   /* P100 — 品牌色/常规 ★ */
+  --color-primary-600: #01c2c3;   /* P120 — 通中 */
+  --color-primary-700: #029999;   /* P140 — 点击/文字链接 */
+  --color-primary-800: #017070;   /* P150 — interpolated */
+  --color-primary-900: #002f35;   /* P160 — 链接文字 */
+
+  /* 中性色 — Neutral (N scale) */
+  --color-neutral-50:  #ffffff;   /* N00  — 白色/背景白 */
+  --color-neutral-100: #f5f5f9;   /* N10  — 浅背景 */
+  --color-neutral-200: #f1f1f5;   /* N20  — 分割线 */
+  --color-neutral-300: #e6e6eb;   /* N40 */
+  --color-neutral-400: #c7c7d7;   /* N60 */
+  --color-neutral-500: #aaaabb;   /* N80 */
+  --color-neutral-600: #7f7f8e;   /* N90  — 辅助文字 Text02 */
+  --color-neutral-700: #626276;   /* N100 — 辅助说明 */
+  --color-neutral-800: #2b2c3c;   /* N120 — 二级信息/标题背景 */
+  --color-neutral-900: #14151a;   /* N140 — 正文 Text01 */
+
+  /* 功能色 — Success Green (G scale) */
+  --color-success-50:  #f4fffc;   /* G20 */
+  --color-success-100: #abeede;   /* G40 */
+  --color-success-500: #0db28b;   /* G100 */
+  --color-success-600: #08765c;   /* G120 */
+  --color-success-700: #08765c;
+
+  /* 功能色 — Warning Yellow (Y scale) */
+  --color-warning-50:  #fffcf4;   /* Y20 */
+  --color-warning-100: #fde3a0;   /* Y40 */
+  --color-warning-500: #f6a508;   /* Y100 */
+  --color-warning-600: #c17606;   /* Y120 */
+  --color-warning-700: #c17606;
+
+  /* 功能色 — Error Red (R scale) */
+  --color-error-50:  #fff6f4;     /* R20 */
+  --color-error-100: #f9c3c8;     /* R40 */
+  --color-error-500: #fa4f5f;     /* R100 */
+  --color-error-600: #c8291f;     /* R120 */
+  --color-error-700: #c8291f;
+
+  /* 功能色 — Info Blue (B scale) */
+  --color-info-50:  #f0faff;      /* B20 */
+  --color-info-100: #b0e2f6;      /* B40 */
+  --color-info-500: #0098d5;      /* B100 */
+  --color-info-600: #00678f;      /* B120 */
+  --color-info-700: #00678f;
+
+  /* Surface */
+  --surface-bg: #f5f5f9;
+  --surface-card: #ffffff;
+  --surface-border: #f1f1f5;
+  --surface-hover: #f5f5f9;
+  --surface-sidebar: #ffffff;
+  --surface-topbar: rgba(255, 255, 255, 0.85);
+  --surface-overlay: rgba(20, 21, 26, 0.5);
+
+  /* Text */
+  --text-primary: #14151a;
+  --text-secondary: #7f7f8e;
+  --text-tertiary: #aaaabb;
+  --text-inverse: #ffffff;
+  --text-on-primary: #14151a;
+
+  /* Interactive */
+  --interactive-primary: #00dbdb;
+  --interactive-primary-hover: #01c2c3;
+  --interactive-primary-subtle: #f4fffc;
+  --interactive-focus: rgba(0, 219, 219, 0.4);
+
+  /* Fonts */
+  --font-sans: 'Noto Sans SC';
+  --font-sans-en: 'Roboto';
+  --font-condensed: 'Roboto Condensed';
+  --font-mono: 'JetBrains Mono';
+
+  /* Shadows — POIZON (卡片 / 提示框 / 弹窗) */
+  --shadow-xs: 0px 1px 2px 0px rgba(20, 21, 26, 0.04);
+  --shadow-sm: 0px 2px 4px 0px rgba(0, 0, 0, 0.05);           /* 卡片投影 */
+  --shadow-md: 0px 2px 8px 0px rgba(43, 44, 60, 0.10);        /* 提示框投影 */
+  --shadow-lg: 0px 4px 14px 0px rgba(20, 21, 26, 0.10);       /* 弹窗投影 */
+  --shadow-xl: 0px 4px 14px 0px rgba(20, 21, 26, 0.10);
+  --shadow-2xl: 0px 8px 24px 0px rgba(20, 21, 26, 0.15);
+
+  /* Border radius */
+  --radius-none: 0px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* Spacing scale (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+
+  /* Transitions */
+  --transition-fast: 100ms ease;
+  --transition-base: 150ms ease;
+  --transition-slow: 250ms ease;
+}
+
+/* ============================================================
+   DESIGN TOKENS — Dark Mode
+   ============================================================ */
+.dark {
+  /* Surface — POIZON N-scale inverted */
+  --surface-bg: #14151a;
+  --surface-card: #2b2c3c;
+  --surface-border: #626276;
+  --surface-hover: #2b2c3c;
+  --surface-sidebar: #14151a;
+  --surface-topbar: rgba(20, 21, 26, 0.9);
+  --surface-overlay: rgba(0, 0, 0, 0.7);
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #aaaabb;
+  --text-tertiary: #626276;
+  --text-inverse: #14151a;
+
+  /* Interactive — lighter teal for dark bg */
+  --interactive-primary: #63f7f7;
+  --interactive-primary-hover: #96fafa;
+  --interactive-primary-subtle: rgba(0, 219, 219, 0.12);
+  --interactive-focus: rgba(0, 219, 219, 0.4);
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 4px 14px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 4px 14px rgba(0, 0, 0, 0.6);
+  --shadow-2xl: 0 8px 24px rgba(0, 0, 0, 0.7);
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--surface-bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Smooth theme transition */
+body,
+body * {
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+/* No transition on elements that shouldn't animate */
+body *[class*="animate-"] {
+  transition: none;
+}
+
+code, pre, kbd {
+  font-family: var(--font-mono), 'Fira Code', monospace;
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-300);
+  border-radius: 999px;
+}
+.dark ::-webkit-scrollbar-thumb { background: var(--color-neutral-700); }
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+.card {
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-hover {
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+.card-hover:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+/* Code block (always dark) */
+.code-block {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: var(--radius-md);
+  color: #e6edf3;
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  padding: 16px 20px;
+  overflow-x: auto;
+}
+
+.code-block .token-keyword { color: #ff7b72; }
+.code-block .token-string { color: #a5d6ff; }
+.code-block .token-comment { color: #8b949e; font-style: italic; }
+.code-block .token-function { color: #d2a8ff; }
+.code-block .token-prop { color: #79c0ff; }
+.code-block .token-number { color: #f2cc60; }
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--interactive-primary);
+  outline-offset: 2px;
+}
+
+/* Gradient text utility — POIZON teal */
+.gradient-text {
+  background: linear-gradient(135deg, #00dbdb 0%, #63f7f7 50%, #cafcfc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section heading */
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
