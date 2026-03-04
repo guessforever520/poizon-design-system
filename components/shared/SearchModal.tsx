@@ -23,13 +23,9 @@ const ALL_RESULTS: SearchResult[] = [
   { label: '文字链接 Link Button', description: '内联文字链接样式按钮',          href: '/components/link-button', section: 'Components' },
   { label: '输入框 Input Field',  description: '带标签、状态及校验的文本输入框', href: '/components/input',       section: 'Components' },
   { label: '标签 Badge',          description: '状态指示器与分类标签',          href: '/components/badge',       section: 'Components' },
-  { label: '表格 Table',          description: '支持排序与分页的数据表格',       href: '/components/table',       section: 'Components' },
   { label: '对话框 Modal',        description: '用于确认操作和表单的对话框',     href: '/components/modal',       section: 'Components' },
-  { label: '下拉菜单 Dropdown',   description: '下拉选择菜单与选项列表',         href: '/components/dropdown',    section: 'Components' },
   { label: '文字提示 Tooltip',    description: '悬停时的上下文提示信息',         href: '/components/tooltip',     section: 'Components' },
   { label: '全局提示 Toast',      description: '短暂的全局通知消息',             href: '/components/toast',       section: 'Components' },
-  { label: '数据卡片 Data Card',  description: '仪表盘专用 KPI 与统计数据卡片', href: '/components/data-card',   section: 'Components' },
-  { label: '导航菜单 Navigation', description: '侧边栏导航组件',                 href: '/components/navigation',  section: 'Components' },
   { label: '面包屑导航 Breadcrumb', description: '多层级页面的路径导航组件',      href: '/components/breadcrumb',  section: 'Components' },
   { label: '复选框 Checkbox',       description: '支持选中、半选与错误状态的多选组件', href: '/components/checkbox', section: 'Components' },
 ]

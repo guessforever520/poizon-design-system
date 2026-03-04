@@ -11,9 +11,8 @@ import CodeBlock from '@/components/shared/CodeBlock'
 import { Button } from '@/components/ui/Button'
 import { Input, Textarea } from '@/components/ui/Input'
 import { Badge } from '@/components/ui/Badge'
-import { DataCard } from '@/components/ui/DataCard'
 import { LinkButton } from '@/components/ui/LinkButton'
-import { Mail, Search, Lock, AlertCircle, AlertTriangle, CheckCircle, Info, TrendingUp, Users, DollarSign, Activity, Image, ExternalLink as LinkIcon, ArrowUpRight, Star } from 'lucide-react'
+import { Mail, Search, Lock, AlertCircle, AlertTriangle, CheckCircle, Info, Image, ExternalLink as LinkIcon, ArrowUpRight, Star } from 'lucide-react'
 
 // ============================================================
 // Live demos per component
@@ -184,68 +183,6 @@ function BadgeDemo() {
   )
 }
 
-function TableDemo() {
-  const data = [
-    { name: 'Acme Corp', status: 'active', revenue: '$12,400', date: 'Feb 14' },
-    { name: 'Globex Inc', status: 'pending', revenue: '$8,900', date: 'Feb 10' },
-    { name: 'Initech LLC', status: 'error', revenue: '$3,200', date: 'Jan 28' },
-    { name: 'Umbrella Co', status: 'active', revenue: '$24,100', date: 'Mar 01' },
-  ]
-
-  const statusBadge: Record<string, React.ReactNode> = {
-    active: <Badge variant="success" dot size="sm">活跃</Badge>,
-    pending: <Badge variant="warning" dot size="sm">待处理</Badge>,
-    error: <Badge variant="error" dot size="sm">失败</Badge>,
-  }
-
-  return (
-    <div className="rounded-xl overflow-hidden border" style={{ borderColor: 'var(--surface-border)' }}>
-      <table className="w-full text-sm">
-        <thead>
-          <tr style={{ background: 'var(--surface-hover)', borderBottom: '1px solid var(--surface-border)' }}>
-            {['公司 ↑', '状态', '营收', '日期'].map(h => (
-              <th key={h} className="px-4 py-3 text-left text-xs font-semibold" style={{ color: 'var(--text-secondary)' }}>
-                {h}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((row, i) => (
-            <tr
-              key={i}
-              className="border-t transition-colors duration-100 cursor-pointer"
-              style={{ borderColor: 'var(--surface-border)', background: 'var(--surface-card)' }}
-            >
-              <td className="px-4 py-3 font-medium" style={{ color: 'var(--text-primary)' }}>{row.name}</td>
-              <td className="px-4 py-3">{statusBadge[row.status]}</td>
-              <td className="px-4 py-3 font-mono text-xs" style={{ color: 'var(--text-primary)' }}>{row.revenue}</td>
-              <td className="px-4 py-3 text-xs" style={{ color: 'var(--text-tertiary)' }}>{row.date}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div
-        className="px-4 py-3 flex items-center justify-between text-xs border-t"
-        style={{ borderColor: 'var(--surface-border)', background: 'var(--surface-hover)', color: 'var(--text-secondary)' }}
-      >
-        <span>显示第 1-4 条，共 94 条</span>
-        <div className="flex gap-1">
-          {['← 上一页', '1', '2', '3', '下一页 →'].map(p => (
-            <button
-              key={p}
-              className="px-2 py-1 rounded font-medium transition-colors"
-              style={p === '1' ? { background: 'var(--interactive-primary)', color: '#fff' } : { color: 'var(--text-secondary)' }}
-            >
-              {p}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
-
 function ModalDemo() {
   const [open, setOpen] = useState(false)
 
@@ -308,57 +245,6 @@ function ModalDemo() {
               </button>
             </div>
           </div>
-        </div>
-      )}
-    </div>
-  )
-}
-
-function DropdownDemo() {
-  const [value, setValue] = useState('na')
-  const [open, setOpen] = useState(false)
-  const options = [
-    { label: '北美洲', value: 'na' },
-    { label: '欧洲', value: 'eu' },
-    { label: '亚太地区', value: 'apac' },
-    { label: '拉丁美洲', value: 'latam' },
-  ]
-  const selected = options.find(o => o.value === value)
-
-  return (
-    <div className="relative w-64 p-2">
-      <label className="block text-sm font-medium mb-1.5" style={{ color: 'var(--text-primary)' }}>地区</label>
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm border transition-all"
-        style={{
-          background: 'var(--surface-card)',
-          borderColor: open ? 'var(--interactive-primary)' : 'var(--surface-border)',
-          color: 'var(--text-primary)',
-        }}
-      >
-        {selected?.label ?? '请选择...'}
-        <span style={{ color: 'var(--text-tertiary)' }}>{open ? '▴' : '▾'}</span>
-      </button>
-      {open && (
-        <div
-          className="absolute left-2 right-2 mt-1 rounded-xl border overflow-hidden z-10 animate-slide-up"
-          style={{ background: 'var(--surface-card)', borderColor: 'var(--surface-border)', boxShadow: 'var(--shadow-lg)' }}
-        >
-          {options.map(opt => (
-            <button
-              key={opt.value}
-              onClick={() => { setValue(opt.value); setOpen(false) }}
-              className="w-full flex items-center gap-2 px-3 py-2.5 text-sm text-left transition-colors"
-              style={{
-                background: opt.value === value ? 'var(--interactive-primary-subtle)' : 'transparent',
-                color: opt.value === value ? 'var(--interactive-primary)' : 'var(--text-primary)',
-              }}
-            >
-              {opt.value === value && <Check className="w-3.5 h-3.5" />}
-              {opt.label}
-            </button>
-          ))}
         </div>
       )}
     </div>
@@ -448,48 +334,6 @@ function ToastDemo() {
           )
         })}
       </div>
-    </div>
-  )
-}
-
-function DataCardDemo() {
-  return (
-    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 p-2">
-      <DataCard title="月营收" value="$124.5k" subtitle="对比上月" trend="up" trendValue="+18% 本期" icon={<DollarSign className="w-4 h-4" />} />
-      <DataCard title="活跃用户" value="3,842" trend="up" trendValue="+240 本周" icon={<Users className="w-4 h-4" />} />
-      <DataCard title="流失率" value="2.4%" trend="down" trendValue="-0.3% 改善" icon={<Activity className="w-4 h-4" />} />
-    </div>
-  )
-}
-
-function NavigationDemo() {
-  const [active, setActive] = useState('组件库')
-  const items = ['仪表盘', '基础规范', '组件库', '规范模式', '资源']
-
-  return (
-    <div
-      className="w-48 rounded-xl overflow-hidden border"
-      style={{ background: 'var(--surface-sidebar)', borderColor: 'var(--surface-border)' }}
-    >
-      <div className="px-4 py-3 border-b" style={{ borderColor: 'var(--surface-border)' }}>
-        <div className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>Pulse DS</div>
-      </div>
-      <nav className="p-2 space-y-0.5">
-        {items.map(item => (
-          <button
-            key={item}
-            onClick={() => setActive(item)}
-            className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150"
-            style={
-              active === item
-                ? { background: 'var(--interactive-primary)', color: '#fff' }
-                : { color: 'var(--text-secondary)' }
-            }
-          >
-            {item}
-          </button>
-        ))}
-      </nav>
     </div>
   )
 }
@@ -635,13 +479,9 @@ const DEMOS: Record<string, React.ReactNode> = {
   button: <ButtonDemo />,
   input: <InputDemo />,
   badge: <BadgeDemo />,
-  table: <TableDemo />,
   modal: <ModalDemo />,
-  dropdown: <DropdownDemo />,
   tooltip: <TooltipDemo />,
   toast: <ToastDemo />,
-  'data-card': <DataCardDemo />,
-  navigation: <NavigationDemo />,
   'link-button': <LinkButtonDemo />,
   'breadcrumb': <BreadcrumbDemo />,
   'checkbox': <CheckboxDemo />,

@@ -387,48 +387,7 @@ import { CheckCircle, AlertTriangle, AlertCircle, Info } from 'lucide-react'
 // Closable — renders × button
 <Badge variant="default" onClose={() => removeTag('design')}>设计系统</Badge>
 <Badge variant="info"    onClose={() => removeTag('new')}>新功能</Badge>`,
-    related: ['table', 'data-card'],
-  },
-  {
-    slug: 'table',
-    name: '表格 Table',
-    category: 'Data Display',
-    description: '支持排序与分页的数据表格。',
-    summary: '表格以行列形式展示结构化数据。企业级表格需要支持大数据集的排序、筛选和分页功能。控制列数——优先选择数量少但信息价值高的列。',
-    props: [
-      { name: 'columns', type: 'Column[]', default: '—', description: '列定义，包含 key、label 及可选的 sortable 标志' },
-      { name: 'data', type: 'Record<string, any>[]', default: '—', description: '行数据对象数组' },
-      { name: 'sortKey', type: 'string', default: '—', description: '当前排序的列 key' },
-      { name: 'sortDir', type: "'asc' | 'desc'", default: "'asc'", description: '排序方向' },
-      { name: 'onSort', type: '(key: string) => void', default: '—', description: '用户点击可排序列标题时触发的回调' },
-      { name: 'pageSize', type: 'number', default: '10', description: '每页显示的行数' },
-      { name: 'onRowClick', type: '(row: any) => void', default: '—', description: '点击行时触发的回调' },
-    ],
-    dos: [
-      '数字列右对齐，使小数点保持在同一竖线上',
-      '表格高度超出视窗时，使用固定表头',
-      '显示行数与分页上下文（"显示第 1-10 条，共 94 条"）',
-      '所有可排序列均显示排序指示器，而不仅限于当前激活的列',
-    ],
-    donts: [
-      '少于 4 条数据时不要使用表格——改用列表',
-      '不要截断关键数据——省略号可能隐藏重要信息',
-      '不要在没有明确视觉指示的情况下自动排序',
-    ],
-    code: `const columns = [
-  { key: 'name', label: 'Name', sortable: true },
-  { key: 'status', label: 'Status' },
-  { key: 'revenue', label: 'Revenue', sortable: true },
-  { key: 'date', label: 'Date', sortable: true },
-]
-
-const data = [
-  { name: 'Acme Corp', status: 'Active', revenue: '$12,400', date: '2026-02-14' },
-  { name: 'Globex Inc', status: 'Pending', revenue: '$8,900', date: '2026-02-10' },
-]
-
-<DataTable columns={columns} data={data} pageSize={10} />`,
-    related: ['badge', 'dropdown', 'data-card'],
+    related: [],
   },
   {
     slug: 'modal',
@@ -487,44 +446,6 @@ function DeleteDialog() {
   )
 }`,
     related: ['button', 'toast'],
-  },
-  {
-    slug: 'dropdown',
-    name: '下拉菜单 Dropdown',
-    category: 'Forms',
-    description: '下拉选择菜单与选项列表。',
-    summary: '当空间有限时，使用 Dropdown 让用户从列表中选择选项。选项少于 4 个时，建议改用单选按钮。',
-    props: [
-      { name: 'label', type: 'string', default: '—', description: '显示在下拉框上方的标签' },
-      { name: 'options', type: '{ label: string; value: string }[]', default: '—', description: '可选项数组' },
-      { name: 'value', type: 'string', default: '—', description: '受控的选中值' },
-      { name: 'onChange', type: '(value: string) => void', default: '—', description: '选择变化时触发的回调' },
-      { name: 'placeholder', type: 'string', default: "'Select...'", description: '未选中时显示的占位文字' },
-      { name: 'disabled', type: 'boolean', default: 'false', description: '禁止选择' },
-    ],
-    dos: [
-      '按字母顺序排列选项，除非有特定的自定义排序需求',
-      '无默认值时显示占位项（"请选择..."）',
-      '较长的列表使用 optgroup 对相关选项进行分组',
-    ],
-    donts: [
-      '不要将 Dropdown 用于仅有 2 个选项的情况——改用切换开关或单选按钮',
-      '超过 15 个选项时，请添加搜索筛选功能',
-    ],
-    code: `const regions = [
-  { label: 'North America', value: 'na' },
-  { label: 'Europe', value: 'eu' },
-  { label: 'Asia Pacific', value: 'apac' },
-]
-
-<Dropdown
-  label="Region"
-  options={regions}
-  value={region}
-  onChange={setRegion}
-  placeholder="Select a region..."
-/>`,
-    related: ['input', 'table'],
   },
   {
     slug: 'tooltip',
@@ -607,109 +528,6 @@ toast.info('Sync in progress', {
   duration: 8000,
 })`,
     related: ['modal', 'button'],
-  },
-  {
-    slug: 'data-card',
-    name: '数据卡片 Data Card',
-    category: 'Data Display',
-    description: '适用于仪表盘的 KPI 指标卡片。',
-    summary: 'Data Card 展示单个关键指标及其趋势信息。在仪表盘网格中使用（2-4 列），快速呈现运营洞察。时序数据务必包含趋势指示器。',
-    props: [
-      { name: 'title', type: 'string', default: '—', description: '指标标签' },
-      { name: 'value', type: 'string | number', default: '—', description: '主要指标数值' },
-      { name: 'subtitle', type: 'string', default: '—', description: '辅助上下文信息（如"对比上月"）' },
-      { name: 'trend', type: "'up' | 'down' | 'neutral'", default: '—', description: '指标的趋势方向' },
-      { name: 'trendValue', type: 'string', default: '—', description: '趋势幅度（如"+12% 本月"）' },
-      { name: 'icon', type: 'ReactNode', default: '—', description: '显示在卡片右上角的图标' },
-    ],
-    dos: [
-      '在一行中将 3-4 个相关 KPI 分组，便于仪表盘快速扫描',
-      '始终将趋势方向与指标数值一起显示',
-      '所有卡片使用统一的数字格式（货币、百分比等）',
-    ],
-    donts: [
-      '不要在单张 Data Card 中放置多个指标',
-      '不要省略单位——始终显示 $、% 或相关单位',
-    ],
-    code: `import { DataCard } from '@/components/ui/DataCard'
-import { Users } from 'lucide-react'
-
-<div className="grid grid-cols-3 gap-4">
-  <DataCard
-    title="Monthly Revenue"
-    value="$124,500"
-    subtitle="vs. last month"
-    trend="up"
-    trendValue="+18% vs last period"
-    icon={<DollarSign className="w-4 h-4" />}
-  />
-  <DataCard
-    title="Active Users"
-    value="3,842"
-    trend="up"
-    trendValue="+240 this week"
-    icon={<Users className="w-4 h-4" />}
-  />
-  <DataCard
-    title="Churn Rate"
-    value="2.4%"
-    trend="down"
-    trendValue="-0.3% improvement"
-  />
-</div>`,
-    related: ['table', 'badge'],
-  },
-  {
-    slug: 'navigation',
-    name: '导航菜单 Navigation',
-    category: 'Layout',
-    description: '侧边栏导航组件。',
-    summary: 'Navigation 侧边栏为多模块企业应用提供层级式导航。支持折叠区块、激活状态高亮及移动端抽屉模式。',
-    props: [
-      { name: 'sections', type: 'NavSection[]', default: '—', description: '导航区块数组，每项包含标签、图标和子菜单' },
-      { name: 'collapsed', type: 'boolean', default: 'false', description: '仅显示图标的折叠模式（桌面端）' },
-      { name: 'mobileOpen', type: 'boolean', default: 'false', description: '移动端抽屉的展开状态' },
-      { name: 'onMobileClose', type: '() => void', default: '—', description: '关闭移动端抽屉的回调' },
-      { name: 'footer', type: 'ReactNode', default: '—', description: '侧边栏底部内容（版本号、用户信息等）' },
-    ],
-    dos: [
-      '顶级导航区块最多 4-6 个，避免使用户感到迷失',
-      '自动展开与当前路由匹配的区块',
-      '高亮当前激活的子菜单项，而非仅高亮父级区块',
-      '在侧边栏底部加入版本号或"最后更新时间"标注',
-    ],
-    donts: [
-      '导航层级不要超过 2 级',
-      '每个区块不要超过 8 个子菜单项，否则应进行分组',
-    ],
-    code: `import { Sidebar } from '@/components/layout/Sidebar'
-
-const sections = [
-  {
-    id: 'dashboard',
-    label: 'Dashboard',
-    icon: LayoutDashboard,
-    href: '/dashboard',
-    children: [
-      { label: 'Overview', href: '/dashboard' },
-      { label: 'Analytics', href: '/dashboard/analytics' },
-    ],
-  },
-  {
-    id: 'settings',
-    label: 'Settings',
-    icon: Settings,
-    href: '/settings',
-    children: [],
-  },
-]
-
-<Sidebar
-  sections={sections}
-  mobileOpen={mobileOpen}
-  onMobileClose={() => setMobileOpen(false)}
-/>`,
-    related: ['button', 'badge'],
   },
   {
     slug: 'link-button',
@@ -819,7 +637,7 @@ import { Star } from 'lucide-react'
     { label: '面包屑导航', icon: <Star className="w-3 h-3" /> },
   ]}
 />`,
-    related: ['navigation', 'link-button'],
+    related: ['link-button'],
   },
   {
     slug: 'checkbox',
