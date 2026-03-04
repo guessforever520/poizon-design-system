@@ -50,7 +50,7 @@ const SECTIONS = [
 
 export default function HomePage() {
   return (
-    <div className="animate-fade-in space-y-12">
+    <div className="animate-fade-in space-y-12 pb-[120px]">
       {/* Hero */}
       <section className="pt-6 pb-4 space-y-[24px]">
         {/* Version badge */}
