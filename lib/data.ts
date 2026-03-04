@@ -216,7 +216,7 @@ export interface ComponentData {
 export const components: ComponentData[] = [
   {
     slug: 'button',
-    name: 'Button',
+    name: '按钮 Button',
     category: 'Actions',
     description: '可点击的交互元素，用于触发操作。',
     summary: 'Button 用于传达用户可执行的操作。通常出现在表单、对话框和工具栏中。请使用合适的变体来体现操作的重要程度。',
@@ -273,7 +273,7 @@ import { Plus, Download, Trash2 } from 'lucide-react'
   },
   {
     slug: 'input',
-    name: 'Input Field',
+    name: '输入框 Input Field',
     category: 'Forms',
     description: '带标签、状态与校验的文本输入框。',
     summary: 'Input 用于让用户输入和编辑文本。常见于表单、搜索框和弹窗。始终为输入框配置标签，并提供清晰的错误提示信息。',
@@ -341,7 +341,7 @@ import { Mail, Search, Lock } from 'lucide-react'
   },
   {
     slug: 'badge',
-    name: 'Badge',
+    name: '标签 Badge',
     category: 'Display',
     description: '状态标签与分类徽章。',
     summary: 'Badge 用于高亮显示某项内容的状态或分类。应节制使用——过多竞争性徽章会产生视觉噪音。在密集表格中，点状变体效果更佳。',
@@ -391,7 +391,7 @@ import { CheckCircle, AlertTriangle, AlertCircle, Info } from 'lucide-react'
   },
   {
     slug: 'table',
-    name: 'Table',
+    name: '表格 Table',
     category: 'Data Display',
     description: '支持排序与分页的数据表格。',
     summary: '表格以行列形式展示结构化数据。企业级表格需要支持大数据集的排序、筛选和分页功能。控制列数——优先选择数量少但信息价值高的列。',
@@ -432,7 +432,7 @@ const data = [
   },
   {
     slug: 'modal',
-    name: 'Modal',
+    name: '对话框 Modal',
     category: 'Overlays',
     description: '用于聚焦交互的对话框遮罩层。',
     summary: 'Modal 将用户注意力集中到某项任务或决策上。适用于确认操作、表单流程和详情查看。避免嵌套弹窗——这会增加用户的认知负担。',
@@ -490,7 +490,7 @@ function DeleteDialog() {
   },
   {
     slug: 'dropdown',
-    name: 'Dropdown',
+    name: '下拉菜单 Dropdown',
     category: 'Forms',
     description: '下拉选择菜单与选项列表。',
     summary: '当空间有限时，使用 Dropdown 让用户从列表中选择选项。选项少于 4 个时，建议改用单选按钮。',
@@ -528,7 +528,7 @@ function DeleteDialog() {
   },
   {
     slug: 'tooltip',
-    name: 'Tooltip',
+    name: '文字提示 Tooltip',
     category: 'Overlays',
     description: '悬停或聚焦时显示的上下文提示信息。',
     summary: '当用户悬停或聚焦某元素时，Tooltip 会展示补充说明信息。内容应简短——如需较长说明，请改用弹出框或链接。',
@@ -565,7 +565,7 @@ import { Settings } from 'lucide-react'
   },
   {
     slug: 'toast',
-    name: 'Toast',
+    name: '全局提示 Toast',
     category: 'Feedback',
     description: '短暂的通知消息提示。',
     summary: 'Toast 为用户操作提供简短的非阻塞式反馈，几秒后自动消失。适用于表单提交及异步操作完成后的成功/错误确认。',
@@ -610,7 +610,7 @@ toast.info('Sync in progress', {
   },
   {
     slug: 'data-card',
-    name: 'Data Card',
+    name: '数据卡片 Data Card',
     category: 'Data Display',
     description: '适用于仪表盘的 KPI 指标卡片。',
     summary: 'Data Card 展示单个关键指标及其趋势信息。在仪表盘网格中使用（2-4 列），快速呈现运营洞察。时序数据务必包含趋势指示器。',
@@ -661,7 +661,7 @@ import { Users } from 'lucide-react'
   },
   {
     slug: 'navigation',
-    name: 'Navigation',
+    name: '导航菜单 Navigation',
     category: 'Layout',
     description: '侧边栏导航组件。',
     summary: 'Navigation 侧边栏为多模块企业应用提供层级式导航。支持折叠区块、激活状态高亮及移动端抽屉模式。',
@@ -713,7 +713,7 @@ const sections = [
   },
   {
     slug: 'link-button',
-    name: 'Link Button',
+    name: '文字链接 Link Button',
     category: 'Actions',
     description: '文字链接按钮，无背景无边框。',
     summary: 'Link Button 用于低强调的导航或辅助操作。以纯文字形式呈现，适合内联在段落中或作为次级操作链接使用。',
