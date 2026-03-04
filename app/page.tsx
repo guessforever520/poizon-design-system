@@ -112,36 +112,30 @@ export default function HomePage() {
       <div
         className="rounded-[16px] relative overflow-hidden"
         style={{
-          background: '#ffffff',
+          background: 'linear-gradient(119.92deg, #002f35 16.69%, #347679 104.57%)',
           border: '1px solid rgba(0,219,219,0.4)',
           minHeight: '180px',
         }}
       >
-        {/* Decorative ellipse blobs from Figma */}
+        {/* Decorative ellipse blobs — Figma node 32:2410 / 32:2411 */}
         <img
           src="/images/getting-started-ellipse1.svg"
           alt=""
           aria-hidden="true"
           className="absolute pointer-events-none"
-          style={{ right: '-60px', top: '-60px', width: '520px', height: 'auto' }}
+          style={{ left: '4%', top: '-100px', width: '105%', height: 'auto' }}
         />
         <img
           src="/images/getting-started-ellipse2.svg"
           alt=""
           aria-hidden="true"
           className="absolute pointer-events-none"
-          style={{ right: '80px', bottom: '-80px', width: '380px', height: 'auto' }}
+          style={{ left: '60%', top: '-210px', width: '70%', height: 'auto', transform: 'scaleX(-1)' }}
         />
 
         <div className="relative p-6">
-          {/* Label */}
+          {/* Label — no icon per Figma */}
           <div className="flex items-center gap-2 mb-3">
-            <img
-              src="/images/getting-started-icon-spark.svg"
-              alt=""
-              aria-hidden="true"
-              className="w-4 h-4 flex-shrink-0"
-            />
             <span
               className="text-[12px] font-bold uppercase tracking-[0.6px]"
               style={{ color: '#00dbdb' }}
@@ -153,7 +147,7 @@ export default function HomePage() {
           {/* Title */}
           <h2
             className="text-[20px] font-bold mb-2"
-            style={{ color: '#14151a', fontFamily: '"Noto Sans SC", sans-serif' }}
+            style={{ color: '#ffffff', fontFamily: '"Noto Sans SC", sans-serif' }}
           >
             快速上手指南
           </h2>
@@ -161,12 +155,12 @@ export default function HomePage() {
           {/* Description */}
           <p
             className="text-[14px] mb-6 max-w-[512px]"
-            style={{ color: '#7f7f8e', fontFamily: '"Noto Sans SC", sans-serif', lineHeight: '20px' }}
+            style={{ color: '#ffffff', fontFamily: '"Noto Sans SC", sans-serif', lineHeight: '20px' }}
           >
             安装 Figma 组件库，获取设计变量 JSON，并克隆组件仓库，立即开始构建。
           </p>
 
-          {/* Action links */}
+          {/* Action links — white buttons, unchanged from Figma */}
           <div className="flex flex-wrap gap-3">
             {['安装 Figma 库', '下载变量', '阅读组件文档'].map(step => (
               <Link
