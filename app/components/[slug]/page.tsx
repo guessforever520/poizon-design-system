@@ -549,21 +549,6 @@ function LinkButtonDemo() {
 }
 
 function CheckboxDemo() {
-  const [checked1, setChecked1] = useState(false)
-  const [checked2, setChecked2] = useState(true)
-
-  // select-all group
-  const [items, setItems] = useState([
-    { label: '商品信息', checked: true },
-    { label: '价格数据', checked: false },
-    { label: '库存状态', checked: true },
-  ])
-  const allChecked = items.every(i => i.checked)
-  const someChecked = items.some(i => i.checked) && !allChecked
-  const toggleAll = (v: boolean) => setItems(items.map(i => ({ ...i, checked: v })))
-  const toggleItem = (idx: number, v: boolean) =>
-    setItems(items.map((item, i) => (i === idx ? { ...item, checked: v } : item)))
-
   return (
     <div className="space-y-6 p-2">
       {/* Variants */}
@@ -593,45 +578,6 @@ function CheckboxDemo() {
           <Checkbox label="未选中" error="此项为必填" />
           <Checkbox label="已选中" checked error="请重新确认" onChange={() => {}} />
           <Checkbox label="半选" indeterminate error="存在冲突项" onChange={() => {}} />
-        </div>
-      </div>
-
-      {/* Controlled */}
-      <div>
-        <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>受控示例</p>
-        <div className="flex gap-6 flex-wrap">
-          {/* Interactive single */}
-          <div className="space-y-2">
-            <Checkbox
-              label={checked1 ? '已订阅通知' : '订阅通知'}
-              checked={checked1}
-              onChange={setChecked1}
-            />
-            <Checkbox
-              label={checked2 ? '已同意条款' : '同意条款'}
-              checked={checked2}
-              onChange={setChecked2}
-            />
-          </div>
-          {/* Select-all group */}
-          <div className="space-y-2">
-            <Checkbox
-              label="全选导出字段"
-              checked={allChecked}
-              indeterminate={someChecked}
-              onChange={toggleAll}
-            />
-            <div className="pl-5 space-y-2">
-              {items.map((item, i) => (
-                <Checkbox
-                  key={item.label}
-                  label={item.label}
-                  checked={item.checked}
-                  onChange={v => toggleItem(i, v)}
-                />
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </div>
