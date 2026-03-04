@@ -26,7 +26,7 @@ export default function TopBar({ onMenuClick, onSearchOpen }: TopBarProps) {
 
   return (
     <header
-      className="fixed top-0 right-0 left-0 lg:left-60 h-14 z-20 flex items-center px-4 gap-3 backdrop-blur-md"
+      className="fixed top-0 right-0 left-0 lg:left-60 h-[60px] z-20 flex items-center px-4 gap-3 backdrop-blur-md"
       style={{
         background: 'var(--surface-topbar)',
         borderBottom: '1px solid var(--surface-border)',

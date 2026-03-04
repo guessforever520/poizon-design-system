@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
-  Home, Palette, Box, Layout, BookOpen,
-  ChevronDown, ChevronRight, X, Layers,
+  Home, Palette, Box, BookOpen,
+  ChevronDown, ChevronRight, X,
 } from 'lucide-react'
 
 interface NavChild {
@@ -24,15 +24,15 @@ interface NavSection {
 const NAV: NavSection[] = [
   {
     id: 'foundations',
-    label: '基础规范',
+    label: '全局样式',
     href: '/foundations',
     icon: Palette,
     children: [
-      { label: '颜色', href: '/foundations?tab=colors' },
-      { label: '排版', href: '/foundations?tab=typography' },
-      { label: '间距', href: '/foundations?tab=spacing' },
-      { label: '阴影', href: '/foundations?tab=shadows' },
-      { label: '圆角', href: '/foundations?tab=radius' },
+      { label: '颜色 Colors', href: '/foundations/colors' },
+      { label: '排版 Typography', href: '/foundations/typography' },
+      { label: '间距 Spacing', href: '/foundations/spacing' },
+      { label: '阴影 Shadows', href: '/foundations/shadows' },
+      { label: '圆角 Border Radius', href: '/foundations/radius' },
     ],
   },
   {
@@ -41,31 +41,17 @@ const NAV: NavSection[] = [
     href: '/components',
     icon: Box,
     children: [
-      { label: 'Button', href: '/components/button' },
-      { label: 'Link Button', href: '/components/link-button' },
-      { label: 'Input Field', href: '/components/input' },
-      { label: 'Badge', href: '/components/badge' },
-      { label: 'Table', href: '/components/table' },
-      { label: 'Modal', href: '/components/modal' },
-      { label: 'Dropdown', href: '/components/dropdown' },
-      { label: 'Tooltip', href: '/components/tooltip' },
-      { label: 'Toast', href: '/components/toast' },
-      { label: 'Data Card', href: '/components/data-card' },
-      { label: 'Navigation', href: '/components/navigation' },
-    ],
-  },
-  {
-    id: 'patterns',
-    label: '规范模式',
-    href: '/patterns',
-    icon: Layout,
-    children: [
-      { label: '空状态', href: '/patterns?p=empty-states' },
-      { label: '加载骨架屏', href: '/patterns?p=loading' },
-      { label: '表单布局', href: '/patterns?p=forms' },
-      { label: '数据表格', href: '/patterns?p=data-table' },
-      { label: '仪表盘布局', href: '/patterns?p=dashboard' },
-      { label: '确认对话框', href: '/patterns?p=confirmation' },
+      { label: 'Button 按钮', href: '/components/button' },
+      { label: 'Link Button 文字链接', href: '/components/link-button' },
+      { label: 'Input Field 输入框', href: '/components/input' },
+      { label: 'Badge 标签', href: '/components/badge' },
+      { label: 'Table 表格', href: '/components/table' },
+      { label: 'Modal 对话框', href: '/components/modal' },
+      { label: 'Dropdown 下拉菜单', href: '/components/dropdown' },
+      { label: 'Tooltip 文字提示', href: '/components/tooltip' },
+      { label: 'Toast 全局提示', href: '/components/toast' },
+      { label: 'Data Card 数据卡片', href: '/components/data-card' },
+      { label: 'Navigation 导航菜单', href: '/components/navigation' },
     ],
   },
   {
@@ -87,7 +73,6 @@ export default function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({
     foundations: false,
     components: false,
-    patterns: false,
     resources: false,
   })
 
@@ -106,21 +91,12 @@ export default function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
   const SidebarContent = () => (
     <div className="flex flex-col h-full overflow-hidden">
       {/* Logo */}
-      <div className="flex items-center gap-3 px-5 py-[18px] border-b" style={{ borderColor: 'var(--surface-border)' }}>
-        <div
-          className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-          style={{ background: 'linear-gradient(135deg, var(--interactive-primary) 0%, #818cf8 100%)' }}
-        >
-          <Layers className="w-4 h-4 text-white" />
-        </div>
-        <div className="min-w-0">
-          <div className="text-sm font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>
-            Pulse DS
-          </div>
-          <div className="text-[10px] uppercase tracking-widest font-medium" style={{ color: 'var(--text-tertiary)' }}>
-            设计系统
-          </div>
-        </div>
+      <div className="flex items-center px-5 h-[60px] border-b" style={{ borderColor: 'var(--surface-border)' }}>
+        <img
+          src="/images/sidebar-logo.png"
+          alt="POIZON GLOBAL Design System"
+          className="h-9 w-auto flex-shrink-0"
+        />
         <button
           onClick={onMobileClose}
           className="ml-auto p-1.5 rounded-md lg:hidden"

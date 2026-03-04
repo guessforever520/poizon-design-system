@@ -1,195 +1,155 @@
 'use client'
 
-import { Eye, EyeOff } from 'lucide-react'
+import { AlertCircle, Eye, EyeOff } from 'lucide-react'
 import { useState } from 'react'
 
-// ── POIZON Input — Figma nodes 37054:32317 (text) · 37926:4624 (password)
-//                             37054:32583 (textarea)
-//
-//  Sizes   : sm → h-[24px]  |  md → h-[32px]  ·  padding px-[8px] py-[4px]
-//  Gap     : gap-[4px] between prefix / input / suffix
-//  States  : Default (#c7c7d7) → Hover (#00dbdb) → Focused (#00dbdb + P20 glow)
-//            Disabled / ReadOnly → bg #f5f5f9  ·  Error → border #fa4f5f
-//  Font    : Noto Sans SC Regular 12px/16px, tracking 0.5px
-//            Textarea: 14px/20px
-//  Radius  : 4px
-// ────────────────────────────────────────────────────────────────────
+// ── POIZON visual tokens (Figma node 37054:32317)
+// Border  : default #c7c7d7 · hover/focus #00dbdb · error #fa4f5f
+// Focus   : border #00dbdb + shadow 0px 0px 0px 1px #cafcfc
+// Bg      : white (default/error) · #f5f5f9 (disabled)
+// Sizes   : sm → h-[24px]  ·  md → h-[32px]  (same padding/font/radius for both)
+// Padding : px-[8px] py-[4px] · radius 4px
+// Font    : Noto Sans SC Regular · 12px/16px · tracking 0.5px
+// Colors  : label #626276 · text #14151a · placeholder #aaaabb · hint #aaaabb · error #fa4f5f
+//           disabled text/placeholder #c7c7d7 · icon #aaaabb · eye-button #7f7f8e
 
-export type InputSize = 'sm' | 'md'
+const FONT: React.CSSProperties = { fontFamily: "'Noto Sans SC', sans-serif" }
 
-// ── Shared helpers ────────────────────────────────────────────────────
-const FONT = { fontFamily: "'Noto Sans SC', sans-serif" }
-const LABEL = 'block text-[12px] leading-[16px] font-normal tracking-[0.5px]'
-const HELPER = 'text-[12px] leading-[16px] tracking-[0.5px]'
+const HEIGHT = { sm: 'h-[24px]', md: 'h-[32px]' } as const
 
-const H: Record<InputSize, string> = {
-  sm: 'h-[24px]',
-  md: 'h-[32px]',
-}
-
-function inputWrapCls(
-  error?:    string,
-  disabled?: boolean,
-  readOnly?: boolean,
-  size:      InputSize = 'md',
-) {
-  const base = [
-    'flex items-center gap-[4px] px-[8px] py-[4px] rounded-[4px] border w-full transition-[border-color,box-shadow,background-color] duration-150',
-    H[size],
-  ]
-  if (disabled || readOnly) {
-    base.push('bg-[#f5f5f9] border-[#c7c7d7] cursor-not-allowed')
-  } else if (error) {
-    base.push('bg-white border-[#fa4f5f]')
-  } else {
-    base.push(
-      'bg-white border-[#c7c7d7]',
-      'hover:border-[#00dbdb]',
-      'focus-within:border-[#00dbdb]',
-      'focus-within:bg-white',
-      'focus-within:shadow-[0px_0px_0px_1px_#cafcfc]',
-    )
-  }
-  return base.join(' ')
-}
-
-// ── Input ─────────────────────────────────────────────────────────────
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+// ─────────────────────────────────────────────────────────────
+// Input  (Figma node 37054:32317 + 37926:4624 password variant)
+// ─────────────────────────────────────────────────────────────
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  size?:      'sm' | 'md'
   label?:     string
   hint?:      string
   error?:     string
-  size?:      InputSize
   leftIcon?:  React.ReactNode
   rightIcon?: React.ReactNode
-  prefix?:    string    // left text prefix e.g. "¥"
-  suffix?:    string    // right text suffix e.g. "元" "kg"
 }
 
 export function Input({
+  size     = 'md',
   label,
   hint,
   error,
-  size     = 'md',
   leftIcon,
   rightIcon,
-  prefix,
-  suffix,
   disabled,
-  readOnly,
   type,
   id,
   className = '',
   ...props
 }: InputProps) {
-  const [showPw, setShowPw]   = useState(false)
-  const isPassword             = type === 'password'
-  const isDisabled             = Boolean(disabled)
-  const isReadOnly             = Boolean(readOnly)
-  const inputId                = id ?? label?.toLowerCase().replace(/\s+/g, '-')
-  const iconColor              = isDisabled ? '#c7c7d7' : '#7f7f8e'
+  const [showPassword, setShowPassword] = useState(false)
+  const isPassword = type === 'password'
+  const isDisabled  = Boolean(disabled)
+  const inputId     = id ?? label?.toLowerCase().replace(/\s+/g, '-')
+
+  const inputCls = [
+    'w-full outline-none',
+    leftIcon                ? 'pl-[28px]' : 'pl-[8px]',
+    rightIcon || isPassword ? 'pr-[28px]' : 'pr-[8px]',
+    HEIGHT[size], 'py-[4px] rounded-[4px] border',
+    'text-[12px] leading-[16px] tracking-[0.5px]',
+    'transition-[border-color,box-shadow,background-color] duration-150',
+    isDisabled
+      ? 'bg-[#f5f5f9] border-[#c7c7d7] cursor-not-allowed placeholder:text-[#c7c7d7]'
+      : error
+        ? 'bg-white border-[#fa4f5f] placeholder:text-[#aaaabb]'
+        : [
+            'bg-white border-[#c7c7d7]',
+            'placeholder:text-[#aaaabb]',
+            'hover:border-[#00dbdb]',
+            'focus:border-[#00dbdb]',
+            'focus:bg-white',
+            'focus:shadow-[0px_0px_0px_1px_#cafcfc]',
+            '[&:-webkit-autofill]:shadow-[0_0_0_30px_white_inset]',
+          ].join(' '),
+    className,
+  ].filter(Boolean).join(' ')
 
   return (
-    <div className={`flex flex-col gap-[4px] w-full ${className}`}>
+    <div className="flex flex-col gap-[4px] w-full">
 
-      {/* Label */}
       {label && (
         <label
           htmlFor={inputId}
-          className={LABEL}
+          className="text-[12px] leading-[16px] font-normal tracking-[0.5px]"
           style={{ ...FONT, color: error ? '#fa4f5f' : '#626276' }}
         >
           {label}
         </label>
       )}
 
-      {/* Input wrapper — carries border + state styles */}
-      <div className={inputWrapCls(error, isDisabled, isReadOnly, size)}>
+      <div className="relative flex items-center">
 
-        {/* Left icon (14×14) */}
         {leftIcon && (
-          <span className="flex-shrink-0 flex items-center w-[14px] h-[14px]" style={{ color: iconColor }}>
-            {leftIcon}
-          </span>
-        )}
-
-        {/* Left text prefix e.g. ¥ */}
-        {prefix && !leftIcon && (
-          <span
-            className="flex-shrink-0 text-[12px] leading-[16px] tracking-[0.5px] whitespace-nowrap"
-            style={{ ...FONT, color: iconColor }}
+          <div
+            className="absolute left-[8px] flex items-center pointer-events-none"
+            style={{ color: isDisabled ? '#c7c7d7' : '#aaaabb' }}
           >
-            {prefix}
-          </span>
+            {leftIcon}
+          </div>
         )}
 
-        {/* Native input — transparent bg, inherits wrapper focus state */}
         <input
           id={inputId}
-          type={isPassword ? (showPw ? 'text' : 'password') : type}
+          type={isPassword && showPassword ? 'text' : type}
           disabled={isDisabled}
-          readOnly={isReadOnly}
-          className={[
-            'flex-1 min-w-0 bg-transparent outline-none',
-            'font-normal text-[12px] leading-[16px] tracking-[0.5px]',
-            'placeholder:text-[#aaaabb] placeholder:font-normal',
-            'disabled:cursor-not-allowed',
-            // Override browser autofill background (Chrome injects a teal/yellow bg)
-            '[&:-webkit-autofill]:shadow-[0_0_0_30px_white_inset]',
-            '[&:-webkit-autofill]:[color:#14151a]',
-          ].join(' ')}
+          className={inputCls}
           style={{ ...FONT, color: isDisabled ? '#c7c7d7' : '#14151a' }}
           {...props}
         />
 
-        {/* Right text suffix e.g. 元 */}
-        {suffix && (
-          <span
-            className="flex-shrink-0 text-[12px] leading-[16px] tracking-[0.5px] whitespace-nowrap"
-            style={{ ...FONT, color: iconColor }}
-          >
-            {suffix}
-          </span>
-        )}
-
-        {/* Password eye-toggle (14×14, tabIndex -1 so tab skips it) */}
         {isPassword && (
           <button
             type="button"
-            tabIndex={-1}
-            onClick={() => !isDisabled && setShowPw(v => !v)}
-            className="flex-shrink-0 flex items-center w-[14px] h-[14px] focus:outline-none"
-            style={{ color: iconColor }}
+            onClick={() => setShowPassword(v => !v)}
+            className="absolute right-[8px] flex items-center"
+            style={{ color: isDisabled ? '#c7c7d7' : '#7f7f8e' }}
           >
-            {showPw ? <EyeOff className="w-[14px] h-[14px]" /> : <Eye className="w-[14px] h-[14px]" />}
+            {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
           </button>
         )}
 
-        {/* Right icon — only when not password */}
         {rightIcon && !isPassword && (
-          <span className="flex-shrink-0 flex items-center w-[14px] h-[14px]" style={{ color: iconColor }}>
+          <div
+            className="absolute right-[8px] flex items-center pointer-events-none"
+            style={{ color: isDisabled ? '#c7c7d7' : '#aaaabb' }}
+          >
             {rightIcon}
-          </span>
+          </div>
         )}
+
       </div>
 
-      {/* Helper / error text */}
       {(error || hint) && (
-        <span className={HELPER} style={{ ...FONT, color: error ? '#fa4f5f' : '#aaaabb' }}>
-          {error ?? hint}
-        </span>
+        <div className="flex items-center gap-[4px]">
+          {error && (
+            <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" style={{ color: '#fa4f5f' }} />
+          )}
+          <span
+            className="text-[12px] leading-[16px] tracking-[0.5px]"
+            style={{ ...FONT, color: error ? '#fa4f5f' : '#aaaabb' }}
+          >
+            {error ?? hint}
+          </span>
+        </div>
       )}
+
     </div>
   )
 }
 
-// ── Textarea ──────────────────────────────────────────────────────────
-// Figma node 37054:32583
-//   Font   : Noto Sans SC 14px/20px, tracking 0.5px
-//   States : Default/Focus → #c7c7d7 border  ·  Hover → #00dbdb  ·  Error → #fa4f5f
-//   Counter: bottom-right X/max, turns red when over limit
-// ─────────────────────────────────────────────────────────────────────
-
-export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+// ─────────────────────────────────────────────────────────────
+// Textarea  (Figma node 37054:32583)
+// Font  : 14px / 20px / tracking 0.5px  (larger than Input)
+// Border: Default #c7c7d7 · Hover #00dbdb · Focus stays #c7c7d7 (unique!)
+// Char counter: "X/max" below right  · grey → red when over limit
+// ─────────────────────────────────────────────────────────────
+interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?:    string
   hint?:     string
   error?:    string
@@ -209,83 +169,95 @@ export function Textarea({
   onChange,
   ...props
 }: TextareaProps) {
+  const isDisabled = Boolean(disabled)
+  const inputId = id ?? label?.toLowerCase().replace(/\s+/g, '-')
+
+  // Track char count (works for both controlled & uncontrolled)
   const [charCount, setCharCount] = useState(() => {
-    if (typeof value        === 'string') return value.length
-    if (typeof defaultValue === 'string') return defaultValue.length
-    return 0
+    const init = value?.toString() ?? defaultValue?.toString() ?? ''
+    return init.length
   })
-  const textareaId  = id ?? label?.toLowerCase().replace(/\s+/g, '-')
-  const isDisabled  = Boolean(disabled)
   const isOverLimit = maxChars !== undefined && charCount > maxChars
-  const hasError    = Boolean(error) || isOverLimit
 
-  // Textarea border per Figma: Default & Focused → #c7c7d7, Hover → #00dbdb
-  const wrapCls = [
-    'relative w-full rounded-[4px] border transition-[border-color] duration-150',
-    isDisabled ? 'bg-[#f5f5f9] border-[#c7c7d7] cursor-not-allowed'
-      : hasError ? 'bg-white border-[#fa4f5f]'
-      : 'bg-white border-[#c7c7d7] hover:border-[#00dbdb] focus-within:border-[#c7c7d7]',
-  ].join(' ')
-
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setCharCount(e.target.value.length)
     onChange?.(e)
   }
 
-  return (
-    <div className={`flex flex-col gap-[4px] w-full ${className}`}>
+  // Textarea is unique: focus border stays #c7c7d7 (only hover turns teal)
+  const textareaCls = [
+    'w-full outline-none resize-y min-h-[52px]',
+    'px-[8px] py-[4px] rounded-[4px] border',
+    'text-[14px] leading-[20px] tracking-[0.5px]',
+    'transition-[border-color] duration-150',
+    isDisabled
+      ? 'bg-[#f5f5f9] border-[#c7c7d7] cursor-not-allowed placeholder:text-[#c7c7d7]'
+      : error
+        ? 'bg-white border-[#fa4f5f] placeholder:text-[#aaaabb]'
+        : [
+            'bg-white border-[#c7c7d7]',
+            'placeholder:text-[#aaaabb]',
+            'hover:border-[#00dbdb]',
+            // Focus intentionally stays gray — per Figma spec
+            'focus:border-[#c7c7d7]',
+          ].join(' '),
+    className,
+  ].filter(Boolean).join(' ')
 
-      {/* Label */}
+  const showBottomRow = error || hint || maxChars !== undefined
+
+  return (
+    <div className="flex flex-col gap-[4px] w-full">
+
       {label && (
         <label
-          htmlFor={textareaId}
-          className={LABEL}
-          style={{ ...FONT, color: hasError ? '#fa4f5f' : '#626276' }}
+          htmlFor={inputId}
+          className="text-[12px] leading-[16px] font-normal tracking-[0.5px]"
+          style={{ ...FONT, color: error ? '#fa4f5f' : '#626276' }}
         >
           {label}
         </label>
       )}
 
-      {/* Textarea wrapper */}
-      <div className={wrapCls}>
-        <textarea
-          id={textareaId}
-          disabled={isDisabled}
-          value={value}
-          defaultValue={defaultValue}
-          onChange={handleChange}
-          className={[
-            'w-full bg-transparent outline-none resize-y',
-            'font-normal text-[14px] leading-[20px] tracking-[0.5px]',
-            'px-[8px] pt-[4px] min-h-[52px]',
-            'placeholder:text-[#aaaabb] placeholder:font-normal',
-            'disabled:cursor-not-allowed',
-          ].join(' ')}
-          style={{
-            ...FONT,
-            color:         isDisabled ? '#c7c7d7' : '#14151a',
-            paddingBottom: maxChars !== undefined ? '22px' : '6px',
-          }}
-          {...props}
-        />
+      <textarea
+        id={inputId}
+        disabled={isDisabled}
+        className={textareaCls}
+        style={{ ...FONT, color: isDisabled ? '#c7c7d7' : '#14151a' }}
+        value={value}
+        defaultValue={value === undefined ? defaultValue : undefined}
+        onChange={handleChange}
+        {...props}
+      />
 
-        {/* Character counter: X/max */}
-        {maxChars !== undefined && (
-          <span
-            className="absolute bottom-[4px] right-[8px] text-[12px] leading-[16px] tracking-[0.5px] pointer-events-none select-none"
-            style={{ ...FONT, color: isOverLimit ? '#fa4f5f' : '#c7c7d7' }}
-          >
-            {charCount}/{maxChars}
-          </span>
-        )}
-      </div>
-
-      {/* Helper / error text */}
-      {(error || hint) && (
-        <span className={HELPER} style={{ ...FONT, color: hasError ? '#fa4f5f' : '#aaaabb' }}>
-          {error ?? hint}
-        </span>
+      {showBottomRow && (
+        <div className="flex items-center justify-between gap-[4px]">
+          {/* Left: error icon + message or hint */}
+          <div className="flex items-center gap-[4px]">
+            {error && (
+              <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" style={{ color: '#fa4f5f' }} />
+            )}
+            {(error || hint) && (
+              <span
+                className="text-[12px] leading-[16px] tracking-[0.5px]"
+                style={{ ...FONT, color: error ? '#fa4f5f' : '#aaaabb' }}
+              >
+                {error ?? hint}
+              </span>
+            )}
+          </div>
+          {/* Right: char counter */}
+          {maxChars !== undefined && (
+            <span
+              className="text-[12px] leading-[16px] flex-shrink-0"
+              style={{ color: isOverLimit ? '#fa4f5f' : '#c7c7d7' }}
+            >
+              {charCount}/{maxChars}
+            </span>
+          )}
+        </div>
       )}
+
     </div>
   )
 }

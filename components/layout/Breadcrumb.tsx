@@ -5,20 +5,28 @@ import { usePathname } from 'next/navigation'
 import { ChevronRight, Home } from 'lucide-react'
 
 const LABELS: Record<string, string> = {
-  foundations: '基础规范',
-  components: '组件库',
-  patterns: '规范模式',
-  resources: '资源',
-  button: 'Button',
-  input: 'Input Field',
-  badge: 'Badge',
-  table: 'Table',
-  modal: 'Modal',
-  dropdown: 'Dropdown',
-  tooltip: 'Tooltip',
-  toast: 'Toast',
-  'data-card': 'Data Card',
-  navigation: 'Navigation',
+  // Top-level sections — match sidebar labels exactly
+  foundations: '全局样式',
+  components:  '组件库',
+  resources:   '资源',
+  // 全局样式 sub-pages
+  colors:      '颜色',
+  typography:  '排版',
+  spacing:     '间距',
+  shadows:     '阴影',
+  radius:      '圆角',
+  // 组件库 sub-pages
+  button:         '按钮',
+  'link-button':  '文字链接',
+  input:          '输入框',
+  badge:          '标签',
+  table:          '表格',
+  modal:          '对话框',
+  dropdown:       '下拉菜单',
+  tooltip:        '文字提示',
+  toast:          '全局提示',
+  'data-card':    '数据卡片',
+  navigation:     '导航菜单',
 }
 
 export default function Breadcrumb() {

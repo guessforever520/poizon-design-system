@@ -24,7 +24,7 @@ export default function LayoutShell({ children }: { children: React.ReactNode })
         onClose={() => setSearchOpen(false)}
       />
       <main
-        className="lg:pl-60 pt-14 min-h-screen"
+        className="lg:pl-60 pt-[60px] min-h-screen"
         style={{ background: 'var(--surface-bg)' }}
       >
         <div className="max-w-[1200px] mx-auto px-6 py-8">

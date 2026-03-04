@@ -2,58 +2,39 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
-import { Search, X, Palette, Box, Layout, ArrowRight } from 'lucide-react'
+import { Search, X, ArrowRight } from 'lucide-react'
 
 interface SearchResult {
   label: string
   description: string
   href: string
-  section: 'Foundations' | 'Components' | 'Patterns'
+  section: 'Foundations' | 'Components'
 }
 
 const ALL_RESULTS: SearchResult[] = [
-  // Foundations
-  { label: '颜色', description: '主色、中性色及语义颜色色板', href: '/foundations?tab=colors', section: 'Foundations' },
-  { label: '排版', description: '字体规范、字体家族、字重及行高', href: '/foundations?tab=typography', section: 'Foundations' },
-  { label: '间距', description: '以 4px 为基础单位的间距规范', href: '/foundations?tab=spacing', section: 'Foundations' },
-  { label: '阴影与层级', description: '层级与阴影变量', href: '/foundations?tab=shadows', section: 'Foundations' },
-  { label: '圆角', description: '圆角变量', href: '/foundations?tab=radius', section: 'Foundations' },
-  // Components
-  { label: 'Button', description: '主要、次要、幽灵及危险变体', href: '/components/button', section: 'Components' },
-  { label: 'Input Field', description: '带标签、状态及校验的文本输入框', href: '/components/input', section: 'Components' },
-  { label: 'Badge', description: '状态指示器与标签', href: '/components/badge', section: 'Components' },
-  { label: 'Table', description: '支持排序与分页的数据表格', href: '/components/table', section: 'Components' },
-  { label: 'Modal', description: '用于确认操作和表单的对话框遮罩层', href: '/components/modal', section: 'Components' },
-  { label: 'Dropdown', description: '下拉选择菜单与选项列表', href: '/components/dropdown', section: 'Components' },
-  { label: 'Tooltip', description: '悬停时的上下文提示信息', href: '/components/tooltip', section: 'Components' },
-  { label: 'Toast', description: '短暂通知消息', href: '/components/toast', section: 'Components' },
-  { label: 'Data Card', description: '仪表盘专用 KPI 与统计数据卡片', href: '/components/data-card', section: 'Components' },
-  { label: 'Navigation', description: '侧边栏导航组件', href: '/components/navigation', section: 'Components' },
-  // Patterns
-  { label: '空状态', description: '零数据与无结果状态', href: '/patterns?p=empty-states', section: 'Patterns' },
-  { label: '加载骨架屏', description: '加载状态的骨架屏', href: '/patterns?p=loading', section: 'Patterns' },
-  { label: '表单布局', description: '单列与多列表单结构', href: '/patterns?p=forms', section: 'Patterns' },
-  { label: '带筛选器的数据表格', description: '可筛选、可排序的数据表格', href: '/patterns?p=data-table', section: 'Patterns' },
-  { label: '仪表盘布局', description: 'KPI 网格与仪表盘排版', href: '/patterns?p=dashboard', section: 'Patterns' },
-  { label: '确认对话框', description: '破坏性操作的确认规范', href: '/patterns?p=confirmation', section: 'Patterns' },
+  // 全局样式 — matches sidebar /foundations/* routes exactly
+  { label: 'Colors 颜色',         description: '主色、中性色及语义颜色色板',    href: '/foundations/colors',     section: 'Foundations' },
+  { label: 'Typography 排版',     description: '字体规范、字体家族、字重及行高', href: '/foundations/typography', section: 'Foundations' },
+  { label: 'Spacing 间距',        description: '以 4px 为基础单位的间距规范',  href: '/foundations/spacing',    section: 'Foundations' },
+  { label: 'Shadows 阴影',        description: '通过阴影层级建立视觉深度',      href: '/foundations/shadows',    section: 'Foundations' },
+  { label: 'Border Radius 圆角',  description: '统一的圆角规范，保持界面一致性', href: '/foundations/radius',     section: 'Foundations' },
+  // 组件库 — matches sidebar /components/* routes exactly
+  { label: 'Button 按钮',         description: '主要、次要、幽灵及危险变体',    href: '/components/button',      section: 'Components' },
+  { label: 'Link Button 文字链接', description: '内联文字链接样式按钮',          href: '/components/link-button', section: 'Components' },
+  { label: 'Input Field 输入框',  description: '带标签、状态及校验的文本输入框', href: '/components/input',       section: 'Components' },
+  { label: 'Badge 标签',          description: '状态指示器与分类标签',          href: '/components/badge',       section: 'Components' },
+  { label: 'Table 表格',          description: '支持排序与分页的数据表格',       href: '/components/table',       section: 'Components' },
+  { label: 'Modal 对话框',        description: '用于确认操作和表单的对话框',     href: '/components/modal',       section: 'Components' },
+  { label: 'Dropdown 下拉菜单',   description: '下拉选择菜单与选项列表',         href: '/components/dropdown',    section: 'Components' },
+  { label: 'Tooltip 文字提示',    description: '悬停时的上下文提示信息',         href: '/components/tooltip',     section: 'Components' },
+  { label: 'Toast 全局提示',      description: '短暂的全局通知消息',             href: '/components/toast',       section: 'Components' },
+  { label: 'Data Card 数据卡片',  description: '仪表盘专用 KPI 与统计数据卡片', href: '/components/data-card',   section: 'Components' },
+  { label: 'Navigation 导航菜单', description: '侧边栏导航组件',                 href: '/components/navigation',  section: 'Components' },
 ]
 
-const SECTION_ICONS: Record<string, React.ElementType> = {
-  Foundations: Palette,
-  Components: Box,
-  Patterns: Layout,
-}
-
 const SECTION_LABELS: Record<string, string> = {
-  Foundations: '基础规范',
-  Components: '组件',
-  Patterns: '规范',
-}
-
-const SECTION_COLORS: Record<string, string> = {
-  Foundations: 'var(--color-info-600)',
-  Components: 'var(--interactive-primary)',
-  Patterns: 'var(--color-success-600)',
+  Foundations: '全局样式',
+  Components:  '组件库',
 }
 
 interface SearchModalProps {
@@ -124,49 +105,55 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
       onClick={onClose}
     >
       <div
-        className="w-full max-w-xl rounded-2xl overflow-hidden animate-scale-in"
+        className="w-full max-w-xl overflow-hidden animate-scale-in"
         style={{
-          background: 'var(--surface-card)',
-          border: '1px solid var(--surface-border)',
-          boxShadow: 'var(--shadow-2xl)',
+          background: '#ffffff',
+          border: '1px solid #f1f1f5',
+          borderRadius: '16px',
+          boxShadow: '0px 8px 24px 0px rgba(20,21,26,0.15)',
         }}
         onClick={e => e.stopPropagation()}
       >
-        {/* Input */}
+        {/* Search input row */}
         <div
-          className="flex items-center gap-3 px-4 py-3.5"
-          style={{ borderBottom: '1px solid var(--surface-border)' }}
+          className="flex items-center gap-[12px] px-[16px] h-[49px] shrink-0"
+          style={{ borderBottom: '1px solid #f1f1f5' }}
         >
-          <Search className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--text-tertiary)' }} />
+          <Search className="w-4 h-4 flex-shrink-0" style={{ color: '#9ca3af' }} />
           <input
             ref={inputRef}
             value={query}
             onChange={e => { setQuery(e.target.value); setActiveIndex(0) }}
             placeholder="搜索组件、变量、规范..."
-            className="flex-1 bg-transparent text-sm outline-none"
+            className="flex-1 bg-transparent text-[14px] outline-none focus-visible:outline-none placeholder:text-[#9ca3af]"
             style={{ color: 'var(--text-primary)' }}
           />
-          <button onClick={onClose} style={{ color: 'var(--text-tertiary)' }}>
+          <button onClick={onClose} className="flex-shrink-0" style={{ color: '#9ca3af' }}>
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Results */}
-        <div className="max-h-[380px] overflow-y-auto p-2">
+        <div className="h-[380px] overflow-y-auto pl-[8px] pr-[13px] pt-[8px] flex flex-col gap-[8px]">
           {flat.length === 0 ? (
-            <div className="py-10 text-center text-sm" style={{ color: 'var(--text-tertiary)' }}>
+            <div className="py-10 text-center text-[14px]" style={{ color: '#aaaabb' }}>
               无 &ldquo;{query}&rdquo; 的搜索结果
             </div>
           ) : (
-            Object.entries(grouped).map(([section, results]) => {
-              const Icon = SECTION_ICONS[section]
-              const color = SECTION_COLORS[section]
-              return (
-                <div key={section} className="mb-3">
-                  <div className="flex items-center gap-1.5 px-2 py-1 mb-1">
-                    <Icon className="w-3.5 h-3.5" style={{ color }} />
-                    <span className="section-label">{SECTION_LABELS[section] ?? section}</span>
+            Object.entries(grouped).flatMap(([section, results], idx) => {
+              const sectionEl = (
+                <div key={section}>
+                  {/* Section label — text only, no icon */}
+                  <div className="px-[12px] py-[8px]">
+                    <span
+                      className="text-[11px] font-bold uppercase tracking-[0.88px]"
+                      style={{ color: '#aaaabb' }}
+                    >
+                      {SECTION_LABELS[section] ?? section}
+                    </span>
                   </div>
+
+                  {/* Result rows */}
                   {results.map(r => {
                     const globalIdx = flat.indexOf(r)
                     const isActive = globalIdx === activeIndex
@@ -175,55 +162,66 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
                         key={r.href}
                         onClick={() => handleSelect(r.href)}
                         onMouseEnter={() => setActiveIndex(globalIdx)}
-                        className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all duration-100 group"
+                        className="w-full flex items-center h-[58px] pl-[12px] pr-[40px] rounded-[8px] text-left transition-all duration-100 group"
                         style={{
-                          background: isActive ? 'var(--interactive-primary-subtle)' : 'transparent',
+                          background: isActive ? '#f4fffc' : 'transparent',
                         }}
                       >
-                        <div className="flex-1 min-w-0">
+                        <div className="flex-1 min-w-0 flex flex-col gap-[2px]">
                           <div
-                            className="text-sm font-medium truncate"
-                            style={{ color: isActive ? 'var(--interactive-primary)' : 'var(--text-primary)' }}
+                            className="text-[14px] font-medium leading-[20px] truncate"
+                            style={{ color: isActive ? '#00dbdb' : '#14151a' }}
                           >
                             {r.label}
                           </div>
-                          <div className="text-xs truncate mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
+                          <div
+                            className="text-[12px] leading-[16px] truncate"
+                            style={{ color: '#aaaabb' }}
+                          >
                             {r.description}
                           </div>
                         </div>
                         <ArrowRight
                           className="w-4 h-4 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
-                          style={{ color: 'var(--interactive-primary)' }}
+                          style={{ color: '#00dbdb' }}
                         />
                       </button>
                     )
                   })}
                 </div>
               )
+
+              if (idx === 0) return [sectionEl]
+              return [
+                <hr key={`divider-${section}`} className="border-0 border-t border-[#f1f1f5] shrink-0 mx-0 my-0" />,
+                sectionEl,
+              ]
             })
           )}
         </div>
 
         {/* Footer */}
         <div
-          className="px-4 py-2.5 flex items-center gap-4 text-xs"
-          style={{
-            borderTop: '1px solid var(--surface-border)',
-            color: 'var(--text-tertiary)',
-          }}
+          className="h-[41px] pl-[16px] flex items-center gap-[16px]"
+          style={{ borderTop: '1px solid #f1f1f5' }}
         >
-          <span className="flex items-center gap-1">
-            <kbd className="px-1.5 py-0.5 rounded font-mono" style={{ background: 'var(--surface-border)' }}>↑↓</kbd>
-            导航
-          </span>
-          <span className="flex items-center gap-1">
-            <kbd className="px-1.5 py-0.5 rounded font-mono" style={{ background: 'var(--surface-border)' }}>↵</kbd>
-            选择
-          </span>
-          <span className="flex items-center gap-1">
-            <kbd className="px-1.5 py-0.5 rounded font-mono" style={{ background: 'var(--surface-border)' }}>Esc</kbd>
-            关闭
-          </span>
+          {[
+            { keys: '↑↓', label: '导航' },
+            { keys: '↵',  label: '选择' },
+            { keys: 'Esc', label: '关闭' },
+          ].map(({ keys, label }) => (
+            <span key={label} className="flex items-center gap-[4px]">
+              <kbd
+                className="px-[6px] py-[2px] rounded-[4px] font-mono text-[12px] leading-[16px]"
+                style={{ background: '#f1f1f5', color: '#aaaabb' }}
+              >
+                {keys}
+              </kbd>
+              <span className="text-[12px] leading-[16px]" style={{ color: '#aaaabb' }}>
+                {label}
+              </span>
+            </span>
+          ))}
         </div>
       </div>
     </div>

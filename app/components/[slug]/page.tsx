@@ -11,7 +11,7 @@ import { Input, Textarea } from '@/components/ui/Input'
 import { Badge } from '@/components/ui/Badge'
 import { DataCard } from '@/components/ui/DataCard'
 import { LinkButton } from '@/components/ui/LinkButton'
-import { Mail, Search, TrendingUp, Users, DollarSign, Activity, Image, ExternalLink as LinkIcon, ArrowUpRight, Star } from 'lucide-react'
+import { Mail, Search, Lock, AlertCircle, AlertTriangle, CheckCircle, Info, TrendingUp, Users, DollarSign, Activity, Image, ExternalLink as LinkIcon, ArrowUpRight, Star } from 'lucide-react'
 
 // ============================================================
 // Live demos per component
@@ -71,8 +71,9 @@ function ButtonDemo() {
 
 function InputDemo() {
   return (
-    <div className="space-y-5 p-2 max-w-sm">
-      {/* Sizes */}
+    <div className="space-y-6 p-2 max-w-sm">
+
+      {/* ── Sizes ── */}
       <div>
         <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--text-tertiary)' }}>尺寸</p>
         <div className="flex gap-3 items-center">
@@ -81,67 +82,102 @@ function InputDemo() {
         </div>
       </div>
 
-      {/* States */}
-      <Input label="默认" placeholder="请输入..." />
-      <Input label="带图标" placeholder="搜索..." leftIcon={<Search className="w-[14px] h-[14px]" />} />
-      <Input label="邮箱" type="email" placeholder="you@company.com" leftIcon={<Mail className="w-[14px] h-[14px]" />} hint="我们绝不会共享您的邮箱地址。" />
-      <Input label="错误状态" defaultValue="invalid-email" error="请输入有效的邮箱地址" />
-      <Input label="只读" defaultValue="ACC-00291" readOnly />
-      <Input label="禁用" defaultValue="ACC-00291" disabled />
-
-      {/* Prefix / suffix */}
+      {/* ── Base states ── */}
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--text-tertiary)' }}>前缀 / 后缀</p>
-        <div className="flex flex-col gap-3">
-          <Input placeholder="0.00" prefix="¥" suffix="元" />
-          <Input placeholder="请输入重量" suffix="kg" />
+        <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--text-tertiary)' }}>文本输入</p>
+        <div className="space-y-3">
+          <Input label="默认" placeholder="请输入..." />
+          <Input label="带图标" placeholder="搜索..." leftIcon={<Search className="w-4 h-4" />} />
+          <Input label="邮箱" type="email" placeholder="you@company.com" leftIcon={<Mail className="w-4 h-4" />} hint="我们绝不会共享您的邮箱地址。" />
+          <Input label="错误状态" defaultValue="invalid-email" error="请输入有效的邮箱地址" />
+          <Input label="禁用" defaultValue="ACC-00291" disabled />
         </div>
       </div>
 
-      {/* Password */}
-      <Input label="密码" type="password" placeholder="请输入密码" />
-
-      {/* Textarea */}
+      {/* ── Password ── */}
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--text-tertiary)' }}>文本域</p>
-        <div className="flex flex-col gap-3">
-          <Textarea label="商品描述" placeholder="请输入..." maxChars={50} />
-          <Textarea label="错误状态" defaultValue="这段文字超出了限制长度。这段文字超出了限制长度。这段文字超出了限制长度。" maxChars={30} error="内容超出字数限制" />
+        <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--text-tertiary)' }}>密码输入</p>
+        <div className="space-y-3">
+          <Input label="密码" type="password" placeholder="请输入密码" leftIcon={<Lock className="w-4 h-4" />} />
+          <Input label="错误密码" type="password" defaultValue="wrong" error="密码错误，请重新输入" leftIcon={<Lock className="w-4 h-4" />} />
+          <Input label="禁用" type="password" defaultValue="hidden" disabled leftIcon={<Lock className="w-4 h-4" />} />
         </div>
       </div>
+
+      {/* ── Textarea ── */}
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--text-tertiary)' }}>多行文本</p>
+        <div className="space-y-3">
+          <Textarea label="商品描述" placeholder="请输入商品描述..." rows={3} />
+          <Textarea label="带字数限制" placeholder="最多输入 100 字..." maxChars={100} rows={3} />
+          <Textarea label="错误状态" error="描述内容不能为空" rows={3} />
+          <Textarea label="禁用" defaultValue="这是禁用状态下的文本内容，无法编辑。" disabled rows={3} />
+        </div>
+      </div>
+
     </div>
   )
 }
 
 function BadgeDemo() {
+  const [closed, setClosed] = useState<string[]>([])
+  const remove = (id: string) => setClosed(prev => [...prev, id])
+  const reset = () => setClosed([])
+
   return (
     <div className="space-y-6 p-2">
+
+      {/* ── Simple variants ── */}
       <div>
         <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>变体</p>
         <div className="flex flex-wrap gap-2">
-          <Badge variant="default">Default</Badge>
-          <Badge variant="primary">Primary</Badge>
-          <Badge variant="success">Success</Badge>
-          <Badge variant="warning">Warning</Badge>
-          <Badge variant="error">Error</Badge>
-          <Badge variant="info">Info</Badge>
+          <Badge variant="default">默认</Badge>
+          <Badge variant="success">成功</Badge>
+          <Badge variant="warning">警告</Badge>
+          <Badge variant="error">错误</Badge>
+          <Badge variant="info">信息</Badge>
         </div>
       </div>
+
+      {/* ── W/ Icon ── */}
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>带状态点</p>
+        <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>带图标</p>
+        <div className="flex flex-wrap gap-2">
+          <Badge variant="success" icon={<CheckCircle className="w-3 h-3" />}>上线</Badge>
+          <Badge variant="warning" icon={<AlertTriangle className="w-3 h-3" />}>处理中</Badge>
+          <Badge variant="error"   icon={<AlertCircle  className="w-3 h-3" />}>失败</Badge>
+          <Badge variant="info"    icon={<Info         className="w-3 h-3" />}>审核中</Badge>
+        </div>
+      </div>
+
+      {/* ── Dot indicator ── */}
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>状态点</p>
         <div className="flex flex-wrap gap-2">
           <Badge variant="success" dot>上线</Badge>
           <Badge variant="warning" dot>处理中</Badge>
-          <Badge variant="error" dot>失败</Badge>
+          <Badge variant="error"   dot>失败</Badge>
+          <Badge variant="info"    dot>审核中</Badge>
         </div>
       </div>
+
+      {/* ── Closable ── */}
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>尺寸</p>
+        <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>可关闭</p>
         <div className="flex flex-wrap gap-2 items-center">
-          <Badge variant="primary" size="sm">小</Badge>
-          <Badge variant="primary" size="md">中</Badge>
+          {!closed.includes('a') && <Badge variant="default" onClose={() => remove('a')}>设计系统</Badge>}
+          {closed.length > 0 && (
+            <button
+              onClick={reset}
+              className="text-[10px]"
+              style={{ color: 'var(--text-tertiary)' }}
+            >
+              重置
+            </button>
+          )}
         </div>
       </div>
+
     </div>
   )
 }
@@ -223,28 +259,51 @@ function ModalDemo() {
           style={{ background: 'var(--surface-overlay)' }}
         >
           <div
-            className="w-full max-w-md rounded-2xl overflow-hidden animate-scale-in"
+            className="w-full max-w-[400px] rounded-[4px] overflow-hidden animate-scale-in"
             style={{
-              background: 'var(--surface-card)',
-              border: '1px solid var(--surface-border)',
-              boxShadow: 'var(--shadow-2xl)',
+              background: '#ffffff',
+              border: '1px solid #f1f1f5',
+              boxShadow: '0px 0px 100px 0px rgba(20,21,26,0.24)',
               margin: '16px',
             }}
           >
-            <div className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: 'var(--surface-border)' }}>
-              <h3 className="font-semibold" style={{ color: 'var(--text-primary)' }}>确认删除记录？</h3>
-              <button onClick={() => setOpen(false)} style={{ color: 'var(--text-tertiary)' }}>
+            {/* Header */}
+            <div className="flex items-center justify-between px-[16px] py-[14px] border-b" style={{ borderColor: '#f1f1f5' }}>
+              <h3
+                className="text-[14px] font-medium leading-[20px] tracking-[0.5px]"
+                style={{ color: '#14151a', fontFamily: '"Noto Sans SC", sans-serif' }}
+              >
+                确认删除记录？
+              </h3>
+              <button onClick={() => setOpen(false)} style={{ color: '#626276' }}>
                 <X className="w-4 h-4" />
               </button>
             </div>
-            <div className="px-6 py-4">
-              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+            {/* Body */}
+            <div className="px-[16px] py-[12px]">
+              <p
+                className="text-[14px] font-normal leading-[20px] tracking-[0.5px]"
+                style={{ color: '#626276', fontFamily: '"Noto Sans SC", sans-serif' }}
+              >
                 此操作不可撤销。该记录及所有关联数据将从我们的服务器中永久删除。
               </p>
             </div>
-            <div className="px-6 py-4 flex justify-end gap-3 border-t" style={{ borderColor: 'var(--surface-border)' }}>
-              <Button variant="secondary" onClick={() => setOpen(false)}>取消</Button>
-              <Button variant="danger" onClick={() => setOpen(false)}>删除记录</Button>
+            {/* Footer */}
+            <div className="px-[16px] py-[12px] flex justify-end gap-[8px] border-t" style={{ borderColor: '#f1f1f5' }}>
+              <button
+                onClick={() => setOpen(false)}
+                className="h-8 px-3 rounded-[4px] text-[14px] font-normal leading-[20px] tracking-[0.5px] border transition-colors"
+                style={{ background: '#ffffff', borderColor: '#c7c7d7', color: '#14151a', fontFamily: '"Noto Sans SC", sans-serif' }}
+              >
+                取消
+              </button>
+              <button
+                onClick={() => setOpen(false)}
+                className="h-8 px-3 rounded-[4px] text-[14px] font-normal leading-[20px] tracking-[0.5px] transition-colors"
+                style={{ background: '#00dbdb', color: '#14151a', fontFamily: '"Noto Sans SC", sans-serif' }}
+              >
+                删除记录
+              </button>
             </div>
           </div>
         </div>

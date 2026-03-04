@@ -102,33 +102,33 @@ export interface TypeScale {
 }
 
 export const typeScale: TypeScale[] = [
-  // 标题 — English Headings (Roboto Bold)
-  { name: '标题/Large-英文',   tag: 'h1',    size: '28px', lineHeight: '32px', weight: '700', family: 'Roboto',           sample: 'POIZON Seller Portal' },
-  { name: '标题/Middle-英文',  tag: 'h2',    size: '24px', lineHeight: '28px', weight: '700', family: 'Roboto',           sample: 'Design System' },
-  { name: '标题/Small-英文',   tag: 'h3',    size: '16px', lineHeight: '20px', weight: '700', family: 'Roboto',           sample: 'Components & Tokens' },
+  // 标题 — English Headings (Roboto Condensed)
+  { name: '标题/Large-英文',   tag: 'h1',   size: '24px', lineHeight: '28px', weight: '700', family: 'Roboto Condensed', sample: 'POIZON Seller Portal' },
+  { name: '标题/Middle-英文',  tag: 'h2',   size: '20px', lineHeight: '28px', weight: '700', family: 'Roboto Condensed', sample: 'POIZON Seller Portal' },
+  { name: '标题/Small-英文',   tag: 'h3',   size: '16px', lineHeight: '20px', weight: '800', family: 'Roboto Condensed', sample: 'POIZON Seller Portal' },
   // 标题 — Chinese Headings (Noto Sans SC Bold)
-  { name: '标题/Large-中文',   tag: 'h1',    size: '24px', lineHeight: '28px', weight: '700', family: 'Noto Sans SC',     sample: '卖家设计规范' },
-  { name: '标题/Middle-中文',  tag: 'h2',    size: '20px', lineHeight: '24px', weight: '700', family: 'Noto Sans SC',     sample: '组件与规范' },
-  { name: '标题/Small-中文',   tag: 'h3',    size: '16px', lineHeight: '20px', weight: '700', family: 'Noto Sans SC',     sample: '颜色规范' },
-  // 内容 — English Body (Roboto)
-  { name: '正文-英文 Regular', tag: 'p',     size: '14px', lineHeight: '20px', weight: '400', family: 'Roboto',           sample: 'Consistent, scalable design for all teams' },
-  { name: '正文-英文 Medium',  tag: 'p',     size: '14px', lineHeight: '20px', weight: '500', family: 'Roboto',           sample: 'Consistent, scalable design for all teams' },
-  { name: '辅助-英文 Regular', tag: 'span',  size: '12px', lineHeight: '16px', weight: '400', family: 'Roboto',           sample: 'Secondary text and descriptions' },
-  { name: '辅助-英文 Medium',  tag: 'span',  size: '12px', lineHeight: '16px', weight: '500', family: 'Roboto',           sample: 'Secondary text and descriptions' },
-  // 内容 — Chinese Body (Noto Sans SC)
-  { name: '正文-中文 Regular', tag: 'p',     size: '14px', lineHeight: '20px', weight: '400', family: 'Noto Sans SC',     sample: '一致性、可扩展、易用的设计体系' },
-  { name: '正文-中文 Medium',  tag: 'p',     size: '14px', lineHeight: '20px', weight: '500', family: 'Noto Sans SC',     sample: '一致性、可扩展、易用的设计体系' },
-  { name: '辅助-中文 Regular', tag: 'span',  size: '12px', lineHeight: '16px', weight: '400', family: 'Noto Sans SC',     sample: '辅助说明文字与描述' },
-  { name: '辅助-中文 Medium',  tag: 'span',  size: '12px', lineHeight: '16px', weight: '500', family: 'Noto Sans SC',     sample: '辅助说明文字与描述' },
-  // 数字-紧缩 — Condensed Numbers (Roboto Condensed)
-  { name: '数字/特大',         tag: 'span',  size: '36px', lineHeight: '40px', weight: '400', family: 'Roboto Condensed', sample: '¥ 1,234,567' },
-  { name: '数字/大',           tag: 'span',  size: '28px', lineHeight: '32px', weight: '400', family: 'Roboto Condensed', sample: '¥ 1,234,567' },
-  { name: '数字/中',           tag: 'span',  size: '20px', lineHeight: '24px', weight: '400', family: 'Roboto Condensed', sample: '¥ 12,400' },
-  { name: '数字/小',           tag: 'span',  size: '16px', lineHeight: '20px', weight: '400', family: 'Roboto Condensed', sample: '¥ 12,400' },
-  { name: '数字/特小',         tag: 'span',  size: '14px', lineHeight: '17px', weight: '400', family: 'Roboto Condensed', sample: '¥ 1,234' },
-  { name: '数字/极小',         tag: 'span',  size: '12px', lineHeight: '15px', weight: '400', family: 'Roboto Condensed', sample: '¥ 1,234' },
+  { name: '标题/Large-中文',   tag: 'h1',   size: '20px', lineHeight: '24px', weight: '700', family: 'Noto Sans SC',     sample: '得物卖家后台' },
+  { name: '标题/Middle-中文',  tag: 'h2',   size: '16px', lineHeight: '20px', weight: '700', family: 'Noto Sans SC',     sample: '得物卖家后台' },
+  { name: '标题/Small-中文',   tag: 'h3',   size: '14px', lineHeight: '20px', weight: '700', family: 'Noto Sans SC',     sample: '得物卖家后台' },
+  // 正文 — English Body (Roboto)
+  { name: '正文-英文 Regular', tag: 'p',    size: '14px', lineHeight: '20px', weight: '400', family: 'Roboto',           sample: 'POIZON Seller Portal' },
+  { name: '正文-英文 Medium',  tag: 'p',    size: '14px', lineHeight: '20px', weight: '500', family: 'Roboto',           sample: 'POIZON Seller Portal' },
+  { name: '辅助-英文 Regular', tag: 'span', size: '12px', lineHeight: '16px', weight: '400', family: 'Roboto',           sample: 'POIZON Seller Portal' },
+  { name: '辅助-英文 Medium',  tag: 'span', size: '12px', lineHeight: '16px', weight: '500', family: 'Roboto',           sample: 'POIZON Seller Portal' },
+  // 正文 — Chinese Body (Noto Sans SC)
+  { name: '正文-中文 Regular', tag: 'p',    size: '14px', lineHeight: '20px', weight: '400', family: 'Noto Sans SC',     sample: '得物卖家后台' },
+  { name: '正文-中文 Medium',  tag: 'p',    size: '14px', lineHeight: '20px', weight: '500', family: 'Noto Sans SC',     sample: '得物卖家后台' },
+  { name: '辅助-中文 Regular', tag: 'span', size: '12px', lineHeight: '16px', weight: '400', family: 'Noto Sans SC',     sample: '得物卖家后台' },
+  { name: '辅助-中文 Medium',  tag: 'span', size: '12px', lineHeight: '16px', weight: '500', family: 'Noto Sans SC',     sample: '得物卖家后台' },
+  // 数字 — Condensed Numbers (Roboto Condensed Bold)
+  { name: '数字/特大',         tag: 'span', size: '28px', lineHeight: 'Auto', weight: '700', family: 'Roboto Condensed', sample: '¥ 1,234,567' },
+  { name: '数字/大',           tag: 'span', size: '22px', lineHeight: 'Auto', weight: '700', family: 'Roboto Condensed', sample: '¥ 1,234,567' },
+  { name: '数字/中',           tag: 'span', size: '20px', lineHeight: 'Auto', weight: '700', family: 'Roboto Condensed', sample: '¥ 12,400' },
+  { name: '数字/小',           tag: 'span', size: '16px', lineHeight: 'Auto', weight: '700', family: 'Roboto Condensed', sample: '¥ 12,400' },
+  { name: '数字/特小',         tag: 'span', size: '14px', lineHeight: 'Auto', weight: '700', family: 'Roboto Condensed', sample: '¥ 1,234' },
+  { name: '数字/极小',         tag: 'span', size: '12px', lineHeight: 'Auto', weight: '600', family: 'Roboto',           sample: '¥ 1,234' },
   // 代码 — Code (JetBrains Mono)
-  { name: 'Code',              tag: 'code',  size: '13px', lineHeight: '22px', weight: '400', family: 'JetBrains Mono',   sample: 'const value = "design-token"' },
+  { name: 'Code',              tag: 'code', size: '13px', lineHeight: 'Auto', weight: '400', family: 'JetBrains Mono',   sample: 'const value = "design-token"' },
 ]
 
 // ============================================================
@@ -278,25 +278,24 @@ import { Plus, Download, Trash2 } from 'lucide-react'
     description: '带标签、状态与校验的文本输入框。',
     summary: 'Input 用于让用户输入和编辑文本。常见于表单、搜索框和弹窗。始终为输入框配置标签，并提供清晰的错误提示信息。',
     props: [
-      { name: 'size', type: "'sm' | 'md'", default: "'md'", description: 'sm = 24px 高度，md = 32px 高度' },
+      { name: 'size', type: "'sm' | 'md'", default: "'md'", description: 'sm = 24px 高度，md = 32px 高度，其余样式完全一致' },
       { name: 'label', type: 'string', default: '—', description: '输入框上方的可访问标签' },
       { name: 'placeholder', type: 'string', default: '—', description: '输入框为空时显示的占位文字' },
       { name: 'hint', type: 'string', default: '—', description: '输入框下方的帮助说明文字' },
       { name: 'error', type: 'string', default: '—', description: '表单验证错误信息，以红色显示' },
-      { name: 'prefix', type: 'string', default: '—', description: '左侧文字前缀，如 "¥"' },
-      { name: 'suffix', type: 'string', default: '—', description: '右侧文字后缀，如 "元" "kg"' },
-      { name: 'leftIcon', type: 'ReactNode', default: '—', description: '渲染在输入框左侧的 14px 图标' },
-      { name: 'rightIcon', type: 'ReactNode', default: '—', description: '渲染在输入框右侧的 14px 图标' },
+      { name: 'leftIcon', type: 'ReactNode', default: '—', description: '渲染在输入框左侧的图标' },
+      { name: 'rightIcon', type: 'ReactNode', default: '—', description: '渲染在输入框右侧的图标' },
       { name: 'disabled', type: 'boolean', default: 'false', description: '将输入框置为灰色，禁止交互' },
-      { name: 'readOnly', type: 'boolean', default: 'false', description: '灰色背景只读，不可编辑' },
-      { name: 'type', type: 'string', default: "'text'", description: 'HTML 输入类型，password 自动附带显示切换按钮' },
+      { name: 'type', type: 'string', default: "'text'", description: 'HTML 输入类型，password 自动附带显示/隐藏切换按钮' },
+      { name: '── Textarea ──', type: '', default: '', description: '' },
+      { name: 'maxChars', type: 'number', default: '—', description: '启用字数限制并在右下角显示计数器' },
+      { name: 'rows', type: 'number', default: '—', description: '文本框的初始行高（继承自原生 textarea）' },
     ],
     dos: [
       '始终显示可见标签——切勿仅依赖 placeholder',
       '使用提示文字说明格式要求，在用户提交前给予指引',
       '用户离开输入框后，立即显示内联验证错误',
       '使用 leftIcon 提供上下文（搜索图标、邮件图标）',
-      '金额类字段使用 prefix="¥" 配合 suffix="元"',
     ],
     donts: [
       '不要用 placeholder 替代标签',
@@ -304,38 +303,40 @@ import { Plus, Download, Trash2 } from 'lucide-react'
       '不要在同一字段堆叠多条错误信息',
     ],
     code: `import { Input, Textarea } from '@/components/ui/Input'
-import { Mail, Search } from 'lucide-react'
+import { Mail, Search, Lock } from 'lucide-react'
 
-// Default (md = 32px height)
-<Input label="账号" placeholder="请输入..." />
+// ── Input — sizes
+<Input size="sm" placeholder="请输入..." />
+<Input size="md" label="账号" placeholder="请输入..." />
 
-// Small (sm = 24px height)
-<Input size="sm" label="搜索" placeholder="请输入..." />
-
-// With left icon (14×14)
+// ── Input — with icon / hint / error / disabled
 <Input
   label="邮箱"
   type="email"
   placeholder="you@company.com"
-  leftIcon={<Mail className="w-[14px] h-[14px]" />}
+  leftIcon={<Mail className="w-4 h-4" />}
   hint="我们绝不会共享您的邮箱地址。"
 />
-
-// Prefix + suffix
-<Input placeholder="0.00" prefix="¥" suffix="元" />
-
-// Password — eye-toggle auto-added
-<Input label="密码" type="password" placeholder="请输入密码" />
-
-// Error state
 <Input label="邮箱" defaultValue="invalid" error="请输入有效的邮箱地址" />
-
-// Disabled / ReadOnly
 <Input label="账号 ID" defaultValue="ACC-00291" disabled />
-<Input label="账号 ID" defaultValue="ACC-00291" readOnly />
 
-// Textarea with char counter
-<Textarea label="商品描述" placeholder="请输入..." maxChars={50} />`,
+// ── Password — lock icon + eye-toggle auto-added
+<Input
+  label="密码"
+  type="password"
+  placeholder="请输入密码"
+  leftIcon={<Lock className="w-4 h-4" />}
+/>
+
+// ── Textarea — hover-only teal border, optional char counter
+<Textarea label="商品描述" placeholder="请输入..." rows={3} />
+<Textarea
+  label="带字数限制"
+  placeholder="最多输入 100 字..."
+  maxChars={100}
+  rows={3}
+/>
+<Textarea label="错误状态" error="描述内容不能为空" rows={3} />`,
     related: ['button', 'modal'],
   },
   {
@@ -345,35 +346,47 @@ import { Mail, Search } from 'lucide-react'
     description: '状态标签与分类徽章。',
     summary: 'Badge 用于高亮显示某项内容的状态或分类。应节制使用——过多竞争性徽章会产生视觉噪音。在密集表格中，点状变体效果更佳。',
     props: [
-      { name: 'variant', type: "'default' | 'primary' | 'success' | 'warning' | 'error' | 'info'", default: "'default'", description: '语义颜色样式' },
-      { name: 'size', type: "'sm' | 'md'", default: "'md'", description: '徽章大小' },
-      { name: 'dot', type: 'boolean', default: 'false', description: '前置状态点指示器' },
-      { name: 'children', type: 'ReactNode', default: '—', description: '徽章标签内容' },
+      { name: 'variant', type: "'default' | 'success' | 'warning' | 'error' | 'info'", default: "'default'", description: '语义颜色样式，控制背景色、边框色和文字色' },
+      { name: 'dot', type: 'boolean', default: 'false', description: '在文字左侧渲染小圆点状态指示器' },
+      { name: 'icon', type: 'ReactNode', default: '—', description: '在文字左侧渲染 12×12 图标（W/ Icon 类型）' },
+      { name: 'onClose', type: '() => void', default: '—', description: '提供后渲染 × 关闭按钮（Closable 类型）' },
+      { name: 'size', type: "'sm' | 'md'", default: "'md'", description: '保留以兼容旧接口，视觉尺寸固定为 Figma 规范单一尺寸' },
+      { name: 'children', type: 'ReactNode', default: '—', description: '标签文字内容' },
     ],
     dos: [
-      '使用语义变体匹配状态含义（success=绿色，error=红色）',
-      '在表格中使用 dot 变体，保持行高紧凑',
-      '每项最多使用 1-2 个徽章，避免过于拥挤',
+      '使用语义变体匹配状态含义（success=绿，error=红，warning=黄，info=蓝）',
+      '在密集表格行中使用 dot 变体，保持行高紧凑',
+      '筛选条件、关键词等可交互标签使用 onClose 可关闭类型',
+      '每项最多使用 1-2 个标签，避免视觉拥挤',
     ],
     donts: [
-      '不要将 Badge 作为按钮使用——它们不具备交互性',
-      '不要在同一视图中混用超过 3 种徽章颜色',
+      '不要将 Badge 作为主要操作按钮使用',
+      '不要在同一视图中混用超过 3 种颜色的标签',
+      '不要使用标签传达需要即时响应的关键警报——应改用 Toast',
     ],
     code: `import { Badge } from '@/components/ui/Badge'
+import { CheckCircle, AlertTriangle, AlertCircle, Info } from 'lucide-react'
 
-// Status variants
-<Badge variant="success">Active</Badge>
-<Badge variant="warning">Pending</Badge>
-<Badge variant="error">Failed</Badge>
-<Badge variant="info">In Review</Badge>
+// Simple — text only
+<Badge variant="default">默认</Badge>
+<Badge variant="success">成功</Badge>
+<Badge variant="warning">警告</Badge>
+<Badge variant="error">错误</Badge>
+<Badge variant="info">信息</Badge>
 
-// With dot indicator
-<Badge variant="success" dot>Live</Badge>
-<Badge variant="warning" dot>Processing</Badge>
+// W/ Icon — semantic icon left of text
+<Badge variant="success" icon={<CheckCircle className="w-3 h-3" />}>上线</Badge>
+<Badge variant="warning" icon={<AlertTriangle className="w-3 h-3" />}>处理中</Badge>
+<Badge variant="error"   icon={<AlertCircle  className="w-3 h-3" />}>失败</Badge>
+<Badge variant="info"    icon={<Info         className="w-3 h-3" />}>审核中</Badge>
 
-// Small size for tables
-<Badge variant="default" size="sm">Draft</Badge>
-<Badge variant="primary" size="sm">Beta</Badge>`,
+// Dot indicator — compact for tables
+<Badge variant="success" dot>上线</Badge>
+<Badge variant="warning" dot>处理中</Badge>
+
+// Closable — renders × button
+<Badge variant="default" onClose={() => removeTag('design')}>设计系统</Badge>
+<Badge variant="info"    onClose={() => removeTag('new')}>新功能</Badge>`,
     related: ['table', 'data-card'],
   },
   {
