@@ -821,6 +821,62 @@ import { Star } from 'lucide-react'
 />`,
     related: ['navigation', 'link-button'],
   },
+  {
+    slug: 'checkbox',
+    name: '复选框 Checkbox',
+    category: 'Forms',
+    description: '允许用户从一组选项中选择零个或多个选项。',
+    summary: 'Checkbox 用于多选场景，支持选中、未选中与半选三种状态。适用于表单、过滤器和设置面板。禁用与错误状态覆盖完整交互流程，配合 label 提升可访问性。',
+    props: [
+      { name: 'label',         type: 'string',                       default: '—',     description: '复选框右侧的文字标签' },
+      { name: 'checked',       type: 'boolean',                      default: 'false', description: '是否选中' },
+      { name: 'indeterminate', type: 'boolean',                      default: 'false', description: '半选状态（全选场景中部分子项被选中）' },
+      { name: 'disabled',      type: 'boolean',                      default: 'false', description: '禁用交互，应用灰色样式' },
+      { name: 'error',         type: 'string',                       default: '—',     description: '错误提示文字，非空时显示红色边框与提示信息' },
+      { name: 'onChange',      type: '(checked: boolean) => void',   default: '—',     description: '状态变更回调' },
+      { name: 'className',     type: 'string',                       default: "''",    description: '附加的 CSS 类名' },
+    ],
+    dos: [
+      '多选场景使用 Checkbox，单选场景改用 Radio',
+      '用半选状态表示"全选"中部分子项已勾选',
+      '始终提供清晰的文字标签，不要单独使用裸框',
+      'error 状态下同时显示错误提示文字，告知原因',
+    ],
+    donts: [
+      '不要用 Checkbox 代替 Toggle——即时生效的设置应用 Toggle',
+      '不要在没有说明原因的情况下禁用 Checkbox',
+      '避免在同一行并排超过 3 个 Checkbox',
+      '不要将半选状态用于"未决定"，仅用于全选层级',
+    ],
+    code: `import { Checkbox } from '@/components/ui/Checkbox'
+
+// 默认 — 未选中
+<Checkbox label="接受服务条款" />
+
+// 选中
+<Checkbox
+  label="接受服务条款"
+  checked
+  onChange={(v) => console.log(v)}
+/>
+
+// 半选（全选中部分子项已勾选）
+<Checkbox
+  label="全选"
+  indeterminate
+  onChange={(v) => console.log(v)}
+/>
+
+// 禁用
+<Checkbox label="不可更改" checked disabled />
+
+// 错误状态
+<Checkbox
+  label="必须同意服务条款"
+  error="请先勾选服务条款后继续"
+/>`,
+    related: ['input', 'button'],
+  },
 ]
 
 // ============================================================

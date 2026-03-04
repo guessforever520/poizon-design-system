@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Check, X, ArrowRight, ExternalLink, Plus, Download, Trash2 } from 'lucide-react'
 import { components } from '@/lib/data'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
+import { Checkbox } from '@/components/ui/Checkbox'
 import CodeBlock from '@/components/shared/CodeBlock'
 import { Button } from '@/components/ui/Button'
 import { Input, Textarea } from '@/components/ui/Input'
@@ -547,6 +548,96 @@ function LinkButtonDemo() {
   )
 }
 
+function CheckboxDemo() {
+  const [checked1, setChecked1] = useState(false)
+  const [checked2, setChecked2] = useState(true)
+
+  // select-all group
+  const [items, setItems] = useState([
+    { label: '商品信息', checked: true },
+    { label: '价格数据', checked: false },
+    { label: '库存状态', checked: true },
+  ])
+  const allChecked = items.every(i => i.checked)
+  const someChecked = items.some(i => i.checked) && !allChecked
+  const toggleAll = (v: boolean) => setItems(items.map(i => ({ ...i, checked: v })))
+  const toggleItem = (idx: number, v: boolean) =>
+    setItems(items.map((item, i) => (i === idx ? { ...item, checked: v } : item)))
+
+  return (
+    <div className="space-y-6 p-2">
+      {/* Variants */}
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>变体</p>
+        <div className="flex flex-wrap gap-6 items-start">
+          <Checkbox label="未选中" checked={false} onChange={() => {}} />
+          <Checkbox label="已选中" checked onChange={() => {}} />
+          <Checkbox label="半选" indeterminate onChange={() => {}} />
+        </div>
+      </div>
+
+      {/* Disabled */}
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>禁用</p>
+        <div className="flex flex-wrap gap-6 items-start">
+          <Checkbox label="禁用未选中" disabled />
+          <Checkbox label="禁用已选中" checked disabled />
+          <Checkbox label="禁用半选" indeterminate disabled />
+        </div>
+      </div>
+
+      {/* Error */}
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>错误状态</p>
+        <div className="flex flex-wrap gap-6 items-start">
+          <Checkbox label="未选中" error="此项为必填" />
+          <Checkbox label="已选中" checked error="请重新确认" onChange={() => {}} />
+          <Checkbox label="半选" indeterminate error="存在冲突项" onChange={() => {}} />
+        </div>
+      </div>
+
+      {/* Controlled */}
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>受控示例</p>
+        <div className="flex gap-6 flex-wrap">
+          {/* Interactive single */}
+          <div className="space-y-2">
+            <Checkbox
+              label={checked1 ? '已订阅通知' : '订阅通知'}
+              checked={checked1}
+              onChange={setChecked1}
+            />
+            <Checkbox
+              label={checked2 ? '已同意条款' : '同意条款'}
+              checked={checked2}
+              onChange={setChecked2}
+            />
+          </div>
+          {/* Select-all group */}
+          <div className="space-y-2">
+            <Checkbox
+              label="全选导出字段"
+              checked={allChecked}
+              indeterminate={someChecked}
+              onChange={toggleAll}
+            />
+            <div className="pl-5 space-y-2">
+              {items.map((item, i) => (
+                <Checkbox
+                  key={item.label}
+                  label={item.label}
+                  checked={item.checked}
+                  onChange={v => toggleItem(i, v)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function BreadcrumbDemo() {
   return (
     <div className="space-y-6 p-2">
@@ -607,6 +698,7 @@ const DEMOS: Record<string, React.ReactNode> = {
   navigation: <NavigationDemo />,
   'link-button': <LinkButtonDemo />,
   'breadcrumb': <BreadcrumbDemo />,
+  'checkbox': <CheckboxDemo />,
 }
 
 // ============================================================
