@@ -20,7 +20,7 @@ const HEIGHT = { sm: 'h-[24px]', md: 'h-[32px]' } as const
 // ─────────────────────────────────────────────────────────────
 // Input  (Figma node 37054:32317 + 37926:4624 password variant)
 // ─────────────────────────────────────────────────────────────
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   size?:      'sm' | 'md'
   label?:     string
   hint?:      string
