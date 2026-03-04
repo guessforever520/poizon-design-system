@@ -95,7 +95,7 @@ export default function HomePage() {
             className="inline-flex items-center gap-2 px-5 py-2 rounded-[8px] text-[14px] font-medium transition-all duration-150"
             style={{ background: '#00dbdb', color: '#14151a' }}
           >
-            浏览组件
+            组件库
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
@@ -103,7 +103,7 @@ export default function HomePage() {
             className="inline-flex items-center gap-2 px-5 py-2 rounded-[8px] text-[14px] font-medium border transition-all duration-150"
             style={{ background: '#ffffff', borderColor: '#f1f1f5', color: '#14151a' }}
           >
-            查看变量
+            全局样式
           </Link>
         </div>
       </section>
