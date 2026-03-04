@@ -112,25 +112,26 @@ export default function HomePage() {
       <div
         className="rounded-[16px] relative overflow-hidden"
         style={{
-          background: '#ffffff',
-          border: '1px solid rgba(0,219,219,0.4)',
+          background: 'radial-gradient(ellipse at 18% 60%, rgba(0,219,219,0.22) 0%, transparent 52%), #0C2424',
+          border: '1px solid rgba(0,219,219,0.45)',
           minHeight: '180px',
-        }}
+          '--stroke-0': '#ffffff',
+        } as React.CSSProperties}
       >
-        {/* Decorative ellipse blobs from Figma */}
+        {/* Decorative ellipse blobs — boosted opacity for dark bg */}
         <img
           src="/images/getting-started-ellipse1.svg"
           alt=""
           aria-hidden="true"
           className="absolute pointer-events-none"
-          style={{ right: '-60px', top: '-60px', width: '520px', height: 'auto' }}
+          style={{ right: '-60px', top: '-60px', width: '520px', height: 'auto', opacity: 0.9 }}
         />
         <img
           src="/images/getting-started-ellipse2.svg"
           alt=""
           aria-hidden="true"
           className="absolute pointer-events-none"
-          style={{ right: '80px', bottom: '-80px', width: '380px', height: 'auto' }}
+          style={{ right: '80px', bottom: '-80px', width: '380px', height: 'auto', opacity: 0.7 }}
         />
 
         <div className="relative p-6">
@@ -153,7 +154,7 @@ export default function HomePage() {
           {/* Title */}
           <h2
             className="text-[20px] font-bold mb-2"
-            style={{ color: '#14151a', fontFamily: '"Noto Sans SC", sans-serif' }}
+            style={{ color: '#ffffff', fontFamily: '"Noto Sans SC", sans-serif' }}
           >
             快速上手指南
           </h2>
@@ -161,7 +162,7 @@ export default function HomePage() {
           {/* Description */}
           <p
             className="text-[14px] mb-6 max-w-[512px]"
-            style={{ color: '#7f7f8e', fontFamily: '"Noto Sans SC", sans-serif', lineHeight: '20px' }}
+            style={{ color: '#7EC0C0', fontFamily: '"Noto Sans SC", sans-serif', lineHeight: '20px' }}
           >
             安装 Figma 组件库，获取设计变量 JSON，并克隆组件仓库，立即开始构建。
           </p>
@@ -174,9 +175,9 @@ export default function HomePage() {
                 href="/resources"
                 className="inline-flex items-center gap-[6px] px-3 py-2 rounded-[8px] text-[14px] font-medium border transition-all duration-150"
                 style={{
-                  background: '#ffffff',
-                  borderColor: '#f1f1f5',
-                  color: '#14151a',
+                  background: 'rgba(255,255,255,0.07)',
+                  borderColor: 'rgba(255,255,255,0.15)',
+                  color: '#ffffff',
                   fontFamily: '"Noto Sans SC", sans-serif',
                   letterSpacing: '0.5px',
                 }}
