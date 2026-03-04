@@ -765,6 +765,62 @@ import { ExternalLink, ArrowUpRight } from 'lucide-react'
 </LinkButton>`,
     related: ['button'],
   },
+  {
+    slug: 'breadcrumb',
+    name: '面包屑导航 Breadcrumb',
+    category: 'Navigation',
+    description: '展示当前页面在层级结构中位置的导航路径。',
+    summary: 'Breadcrumb 帮助用户理解当前页面在整体架构中的位置，并提供向上级页面的快速导航路径。适用于具有明确层级关系的多级页面，字重与颜色区分父级与当前页。',
+    props: [
+      { name: 'items', type: 'BreadcrumbItem[]', default: '—', description: '面包屑条目数组，最后一项自动渲染为当前页（加粗深色）' },
+      { name: 'items[].label', type: 'string', default: '—', description: '条目显示文本' },
+      { name: 'items[].href', type: 'string', default: '—', description: '父级页面链接，当前页不传入' },
+      { name: 'items[].icon', type: 'ReactNode', default: '—', description: '当前页右侧的图标（如收藏星标）' },
+      { name: 'className', type: 'string', default: "''", description: '附加的 CSS 类名' },
+    ],
+    dos: [
+      '在层级超过 2 级的页面中使用面包屑',
+      '当前页面始终显示为最后一项，字重加粗',
+      '为父级页面添加 href 链接，便于快速返回',
+      '保持标签与实际页面标题完全一致',
+    ],
+    donts: [
+      '不要在只有一级的扁平结构中使用面包屑',
+      '不要将面包屑作为主要导航，仅用作辅助定位',
+      '不要让路径超过 4 级，可考虑省略中间层级',
+      '不要在移动端将面包屑作为主要导航元素',
+    ],
+    code: `import { Breadcrumb } from '@/components/ui/Breadcrumb'
+import { Star } from 'lucide-react'
+
+// 2 层级
+<Breadcrumb
+  items={[
+    { label: '首页', href: '/' },
+    { label: '当前页面', icon: <Star className="w-3 h-3" /> },
+  ]}
+/>
+
+// 3 层级
+<Breadcrumb
+  items={[
+    { label: '首页', href: '/' },
+    { label: '组件库', href: '/components' },
+    { label: '面包屑导航', icon: <Star className="w-3 h-3" /> },
+  ]}
+/>
+
+// 4 层级
+<Breadcrumb
+  items={[
+    { label: '首页', href: '/' },
+    { label: '组件库', href: '/components' },
+    { label: '导航组件', href: '/components#nav' },
+    { label: '面包屑导航', icon: <Star className="w-3 h-3" /> },
+  ]}
+/>`,
+    related: ['navigation', 'link-button'],
+  },
 ]
 
 // ============================================================

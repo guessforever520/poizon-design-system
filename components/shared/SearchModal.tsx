@@ -30,6 +30,7 @@ const ALL_RESULTS: SearchResult[] = [
   { label: '全局提示 Toast',      description: '短暂的全局通知消息',             href: '/components/toast',       section: 'Components' },
   { label: '数据卡片 Data Card',  description: '仪表盘专用 KPI 与统计数据卡片', href: '/components/data-card',   section: 'Components' },
   { label: '导航菜单 Navigation', description: '侧边栏导航组件',                 href: '/components/navigation',  section: 'Components' },
+  { label: '面包屑导航 Breadcrumb', description: '多层级页面的路径导航组件',      href: '/components/breadcrumb',  section: 'Components' },
 ]
 
 const SECTION_LABELS: Record<string, string> = {

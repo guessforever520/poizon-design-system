@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Check, X, ArrowRight, ExternalLink, Plus, Download, Trash2 } from 'lucide-react'
 import { components } from '@/lib/data'
+import { Breadcrumb } from '@/components/ui/Breadcrumb'
 import CodeBlock from '@/components/shared/CodeBlock'
 import { Button } from '@/components/ui/Button'
 import { Input, Textarea } from '@/components/ui/Input'
@@ -546,6 +547,53 @@ function LinkButtonDemo() {
   )
 }
 
+function BreadcrumbDemo() {
+  return (
+    <div className="space-y-6 p-2">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>2 层级</p>
+        <Breadcrumb
+          items={[
+            { label: '上级页面' },
+            { label: '当前页面', icon: <Star className="w-3 h-3" style={{ color: '#aaaabb' }} /> },
+          ]}
+        />
+      </div>
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>3 层级</p>
+        <Breadcrumb
+          items={[
+            { label: '上级页面' },
+            { label: '上级页面' },
+            { label: '当前页面', icon: <Star className="w-3 h-3" style={{ color: '#aaaabb' }} /> },
+          ]}
+        />
+      </div>
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>4 层级</p>
+        <Breadcrumb
+          items={[
+            { label: '上级页面' },
+            { label: '上级页面' },
+            { label: '上级页面' },
+            { label: '当前页面', icon: <Star className="w-3 h-3" style={{ color: '#aaaabb' }} /> },
+          ]}
+        />
+      </div>
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--text-tertiary)' }}>带链接</p>
+        <Breadcrumb
+          items={[
+            { label: '首页', href: '/' },
+            { label: '组件库', href: '/components' },
+            { label: '面包屑导航 Breadcrumb', icon: <Star className="w-3 h-3" style={{ color: '#aaaabb' }} /> },
+          ]}
+        />
+      </div>
+    </div>
+  )
+}
+
 const DEMOS: Record<string, React.ReactNode> = {
   button: <ButtonDemo />,
   input: <InputDemo />,
@@ -558,6 +606,7 @@ const DEMOS: Record<string, React.ReactNode> = {
   'data-card': <DataCardDemo />,
   navigation: <NavigationDemo />,
   'link-button': <LinkButtonDemo />,
+  'breadcrumb': <BreadcrumbDemo />,
 }
 
 // ============================================================

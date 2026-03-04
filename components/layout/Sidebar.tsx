@@ -52,6 +52,7 @@ const NAV: NavSection[] = [
       { label: '全局提示 Toast', href: '/components/toast' },
       { label: '数据卡片 Data Card', href: '/components/data-card' },
       { label: '导航菜单 Navigation', href: '/components/navigation' },
+      { label: '面包屑导航 Breadcrumb', href: '/components/breadcrumb' },
     ],
   },
   {
