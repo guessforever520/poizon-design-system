@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { patterns } from '@/lib/data'
@@ -131,7 +131,7 @@ function PatternMockup({ id }: { id: string }) {
   return mockups[id] ?? null
 }
 
-export default function PatternsPage() {
+function PatternsContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const activeId = searchParams.get('p') ?? null
@@ -272,5 +272,13 @@ export default function PatternsPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function PatternsPage() {
+  return (
+    <Suspense fallback={null}>
+      <PatternsContent />
+    </Suspense>
   )
 }
