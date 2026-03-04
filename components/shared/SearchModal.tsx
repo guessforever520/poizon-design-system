@@ -19,17 +19,17 @@ const ALL_RESULTS: SearchResult[] = [
   { label: 'Shadows 阴影',        description: '通过阴影层级建立视觉深度',      href: '/foundations/shadows',    section: 'Foundations' },
   { label: 'Border Radius 圆角',  description: '统一的圆角规范，保持界面一致性', href: '/foundations/radius',     section: 'Foundations' },
   // 组件库 — matches sidebar /components/* routes exactly
-  { label: 'Button 按钮',         description: '主要、次要、幽灵及危险变体',    href: '/components/button',      section: 'Components' },
-  { label: 'Link Button 文字链接', description: '内联文字链接样式按钮',          href: '/components/link-button', section: 'Components' },
-  { label: 'Input Field 输入框',  description: '带标签、状态及校验的文本输入框', href: '/components/input',       section: 'Components' },
-  { label: 'Badge 标签',          description: '状态指示器与分类标签',          href: '/components/badge',       section: 'Components' },
-  { label: 'Table 表格',          description: '支持排序与分页的数据表格',       href: '/components/table',       section: 'Components' },
-  { label: 'Modal 对话框',        description: '用于确认操作和表单的对话框',     href: '/components/modal',       section: 'Components' },
-  { label: 'Dropdown 下拉菜单',   description: '下拉选择菜单与选项列表',         href: '/components/dropdown',    section: 'Components' },
-  { label: 'Tooltip 文字提示',    description: '悬停时的上下文提示信息',         href: '/components/tooltip',     section: 'Components' },
-  { label: 'Toast 全局提示',      description: '短暂的全局通知消息',             href: '/components/toast',       section: 'Components' },
-  { label: 'Data Card 数据卡片',  description: '仪表盘专用 KPI 与统计数据卡片', href: '/components/data-card',   section: 'Components' },
-  { label: 'Navigation 导航菜单', description: '侧边栏导航组件',                 href: '/components/navigation',  section: 'Components' },
+  { label: '按钮 Button',         description: '主要、次要、幽灵及危险变体',    href: '/components/button',      section: 'Components' },
+  { label: '文字链接 Link Button', description: '内联文字链接样式按钮',          href: '/components/link-button', section: 'Components' },
+  { label: '输入框 Input Field',  description: '带标签、状态及校验的文本输入框', href: '/components/input',       section: 'Components' },
+  { label: '标签 Badge',          description: '状态指示器与分类标签',          href: '/components/badge',       section: 'Components' },
+  { label: '表格 Table',          description: '支持排序与分页的数据表格',       href: '/components/table',       section: 'Components' },
+  { label: '对话框 Modal',        description: '用于确认操作和表单的对话框',     href: '/components/modal',       section: 'Components' },
+  { label: '下拉菜单 Dropdown',   description: '下拉选择菜单与选项列表',         href: '/components/dropdown',    section: 'Components' },
+  { label: '文字提示 Tooltip',    description: '悬停时的上下文提示信息',         href: '/components/tooltip',     section: 'Components' },
+  { label: '全局提示 Toast',      description: '短暂的全局通知消息',             href: '/components/toast',       section: 'Components' },
+  { label: '数据卡片 Data Card',  description: '仪表盘专用 KPI 与统计数据卡片', href: '/components/data-card',   section: 'Components' },
+  { label: '导航菜单 Navigation', description: '侧边栏导航组件',                 href: '/components/navigation',  section: 'Components' },
 ]
 
 const SECTION_LABELS: Record<string, string> = {
